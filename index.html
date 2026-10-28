@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Аптека: ліки, вітаміни та товари для здоров'я з доставкою по Україні">
+  <title>Аптека — Головна</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar__inner">
+      <span>Гаряча лінія: <strong>0 (800) 50 50 50</strong></span>
+      <a href="#" class="topbar__city">
+        <span class="icon icon--location"></span>
+        Київ
+      </a>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="header__inner">
+      <a href="index.html" class="logo">
+        <img src="img/logo.png" alt="Аптека">
+        <span>Аптека</span>
+      </a>
+
+      <a href="catalog.html" class="pill btn-catalog">
+        <span class="icon icon--catalog"></span>Каталог
+      </a>
+
+      <form class="search" role="search">
+        <input type="search" placeholder="Пошук ліків, вітамінів та товарів..." aria-label="Пошук">
+        <button class="search__btn" aria-label="Шукати"><span class="icon icon--search"></span></button>
+      </form>
+
+      <a href="pharmacies.html" class="pill btn-pharmacies">Всі аптеки</a>
+
+      <nav class="header__actions" aria-label="Панель користувача">
+        <a href="#" class="action">
+          <span class="action__icon">
+            <span class="icon icon--saved"></span>
+            <span class="badge" data-count="4">4</span>
+          </span>
+          Обране
+        </a>
+        <a href="#" class="action">
+          <span class="action__icon"><span class="icon icon--user"></span></span>
+          Кабінет
+        </a>
+        <a href="checkout.html" class="action">
+          <span class="action__icon">
+            <span class="icon icon--shop"></span>
+            <span class="badge" data-count="2">2</span>
+          </span>
+          Кошик
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <img class="hero__img" src="img/banner.png" alt="Вітаміни зі знижкою">
+      <div class="hero__text">
+        <h1 class="hero__title">Осінні знижки на вітаміни до -30%</h1>
+        <p class="hero__sub">Подбайте про свій імунітет у сезон застуд</p>
+        <a href="catalog.html" class="btn-outline">Перейти в каталог</a>
+      </div>
+    </section>
+
+    <!-- Популярні товари -->
+    <div class="section-head">
+      <h2>Популярні товари</h2>
+      <div class="arrows">
+        <button class="arrow" disabled aria-label="Назад"><span class="icon icon--arrow-back"></span></button>
+        <button class="arrow" aria-label="Вперед"><span class="icon icon--arrow-forward"></span></button>
+      </div>
+    </div>
+    
+    <div class="products-grid">
+      <article class="product-card">
+        <label class="save" aria-label="В обране">
+          <input type="checkbox">
+          <span class="icon icon--saved"></span>
+        </label>
+        <a href="product.html" class="product-card__overlay" tabindex="-1" aria-hidden="true"></a>
+        <img class="product-card__img" src="img/nurofen.png" alt="Нурофєн">
+        <h3 class="product-card__title"><a href="product.html">Нурофєн експрес форте капсули м'як. по 400 мг №20 (10х2)</a></h3>
+        <div class="product-card__bottom">
+          <div>
+            <div class="product-card__price">349,00 ₴</div>
+            <div class="product-card__stock">в 1193 аптеках</div>
+          </div>
+          <div class="product-card__actions">
+            <button class="btn-cart"><span class="icon icon--shop"></span>Додати товар</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <label class="save" aria-label="В обране">
+          <input type="checkbox">
+          <span class="icon icon--saved"></span>
+        </label>
+        <a href="product.html" class="product-card__overlay" tabindex="-1" aria-hidden="true"></a>
+        <img class="product-card__img" src="img/vitamins.png" alt="Вітамін С 500">
+        <h3 class="product-card__title"><a href="product.html">Вітамін С 500 мг з апельсиновим смаком таблетки №10</a></h3>
+        <div class="product-card__bottom">
+          <div>
+            <div class="product-card__price">21,60 ₴</div>
+            <div class="product-card__stock">в 1473 аптеках</div>
+          </div>
+          <div class="product-card__actions">
+            <button class="btn-cart"><span class="icon icon--shop"></span>Додати товар</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <label class="save" aria-label="В обране">
+          <input type="checkbox">
+          <span class="icon icon--saved"></span>
+        </label>
+        <a href="product.html" class="product-card__overlay" tabindex="-1" aria-hidden="true"></a>
+        <img class="product-card__img" src="img/omega3.png" alt="Омега-3">
+        <h3 class="product-card__title"><a href="product.html">Омега-3 1000 мг капсули №30</a></h3>
+        <div class="product-card__bottom">
+          <div>
+            <div class="product-card__price">253,90 ₴</div>
+            <div class="product-card__stock">в 894 аптеках</div>
+          </div>
+          <div class="product-card__actions">
+            <button class="btn-cart"><span class="icon icon--shop"></span>Додати товар</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <label class="save" aria-label="В обране">
+          <input type="checkbox">
+          <span class="icon icon--saved"></span>
+        </label>
+        <a href="product.html" class="product-card__overlay" tabindex="-1" aria-hidden="true"></a>
+        <img class="product-card__img" src="img/ibuprofen.png" alt="Ібупрофен">
+        <h3 class="product-card__title"><a href="product.html">Ібупрофен таблетки, в/о по 200 мг №14 (7х2)</a></h3>
+        <div class="product-card__bottom">
+          <div>
+            <div class="product-card__price">49,90 ₴</div>
+            <div class="product-card__stock">в 150 аптеках</div>
+          </div>
+          <div class="product-card__actions">
+            <button class="btn-cart"><span class="icon icon--shop"></span>Додати товар</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Для мобільного прегляд настпуних сторінок з товарами -->
+    <div class="pagination">
+      <button class="page-btn is-active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <button class="page-btn" aria-label="Наступна сторінка">&gt;</button>
+    </div>
+
+    <!-- Сезонна аптечка -->
+    <div class="section-head">
+      <h2>Сезонна аптечка</h2>
+      <div class="arrows">
+        <button class="arrow" disabled aria-label="Назад"><span class="icon icon--arrow-back"></span></button>
+        <button class="arrow" aria-label="Вперед"><span class="icon icon--arrow-forward"></span></button>
+      </div>
+    </div>
+
+    <div class="products-grid">
+      <article class="product-card product-card--out">
+        <label class="save" aria-label="В обране">
+          <input type="checkbox">
+          <span class="icon icon--saved"></span>
+        </label>
+        <a href="product.html" class="product-card__overlay" tabindex="-1" aria-hidden="true"></a>
+        <img class="product-card__img" src="img/tea.png" alt="Фармацитрон форте">
+        <h3 class="product-card__title"><a href="product.html">Фармацитрон форте порошок д/ор. р-ну по 23 г №10 у пак.</a></h3>
+        <div class="product-card__bottom">
+          <div><div class="product-card__stock">немає в наявності в Україні</div></div>
+          <div class="product-card__actions"></div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <label class="save" aria-label="В обране">
+          <input type="checkbox">
+          <span class="icon icon--saved"></span>
+        </label>
+        <a href="product.html" class="product-card__overlay" tabindex="-1" aria-hidden="true"></a>
+        <img class="product-card__img" src="img/nocspray.png" alt="Нокспрей">
+        <h3 class="product-card__title"><a href="product.html">Нокспрей спрей наз. 0.05 % по 10 мл у конт.</a></h3>
+        <div class="product-card__bottom">
+          <div>
+            <div class="product-card__price">134,60 ₴</div>
+            <div class="product-card__stock">в 1061 аптеці</div>
+          </div>
+          <div class="product-card__actions">
+            <button class="btn-cart"><span class="icon icon--shop"></span>Додати товар</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <label class="save" aria-label="В обране">
+          <input type="checkbox">
+          <span class="icon icon--saved"></span>
+        </label>
+        <a href="product.html" class="product-card__overlay" tabindex="-1" aria-hidden="true"></a>
+        <img class="product-card__img" src="img/strepsils.png" alt="Стрепсілс">
+        <h3 class="product-card__title"><a href="product.html">Стрепсілс з медом та лимоном льодяники №24 (12х2)</a></h3>
+        <div class="product-card__bottom">
+          <div>
+            <div class="product-card__price">172,10 ₴</div>
+            <div class="product-card__stock">в 1082 аптеках</div>
+          </div>
+          <div class="product-card__actions">
+            <button class="btn-cart"><span class="icon icon--shop"></span>Додати товар</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <label class="save" aria-label="В обране">
+          <input type="checkbox">
+          <span class="icon icon--saved"></span>
+        </label>
+        <a href="product.html" class="product-card__overlay" tabindex="-1" aria-hidden="true"></a>
+        <img class="product-card__img" src="img/herbion.png" alt="Гербіон">
+        <h3 class="product-card__title"><a href="product.html">Гербіон сироп подорожника сироп по 150 мл у флак.</a></h3>
+        <div class="product-card__bottom">
+          <div>
+            <div class="product-card__price">336,20 ₴</div>
+            <div class="product-card__stock">в 1190 аптеках</div>
+          </div>
+          <div class="product-card__actions">
+            <button class="btn-cart"><span class="icon icon--shop"></span>Додати товар</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Для мобільного прегляд настпуних сторінок з товарами -->
+    <div class="pagination">
+      <button class="page-btn is-active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <button class="page-btn" aria-label="Наступна сторінка">&gt;</button>
+    </div>
+  </main>
+
+  <!-- Футер -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__pay">
+          <span class="footer__label">Ми приймаємо:</span>
+          <img src="img/mastercard.png" alt="Mastercard">
+          <img src="img/visa.png" alt="Visa">
+          <img src="img/apple-pay.png" alt="Apple Pay">
+          <img src="img/google-pay.png" alt="Google Pay">
+        </div>
+        <div class="footer__social">
+          <span class="footer__label">Слідкуйте за нами:</span>
+          <a href="#" aria-label="Facebook"><img src="img/facebook.png" alt="Facebook"></a>
+          <a href="#" aria-label="Telegram"><img src="img/telegram.png" alt="Telegram"></a>
+          <a href="#" aria-label="YouTube"><img src="img/youtube.png" alt="YouTube"></a>
+          <a href="#" aria-label="Instagram"><img src="img/instagram.png" alt="Instagram"></a>
+        </div>
+      </div>
+
+      <hr class="footer__line">
+
+      <div class="footer__cols">
+        <!-- Покупцям -->
+        <div class="footer__col">
+          <h4 class="footer__title">Покупцям</h4>
+          <ul class="footer__list">
+            <li><a href="#">Про компанію</a></li>
+            <li><a href="#">Розшифровка рецепту з фото</a></li>
+            <li><a href="#">Акції</a></li>
+            <li><a href="#">Блог</a></li>
+            <li><a href="#">Корпоративним клієнтам та юридичним особам</a></li>
+            <li><a href="#">Оплата і доставка</a></li>
+            <li><a href="#">Повернення товару</a></li>
+            <li><a href="#">Контроль якості</a></li>
+            <li><a href="#">Питання?</a></li>
+          </ul>
+        </div>
+
+        <!-- Інформація -->
+        <div class="footer__col">
+          <h4 class="footer__title">Інформація</h4>
+          <ul class="footer__list">
+            <li><a href="#">Всі аптеки</a></li>
+            <li><a href="#">Аптеки партнери</a></li>
+            <li><a href="#">Як зробити замовлення?</a></li>
+            <li><a href="#">Умови використання сайту</a></li>
+            <li><a href="#">Політика конфіденційності</a></li>
+            <li><a href="#">Новини</a></li>
+            <li><a href="#">Доступні ліки</a></li>
+            <li><a href="#">Маркетингова політика</a></li>
+            <li><a href="#">Контакти</a></li>
+          </ul>
+        </div>
+
+        <!-- Контакти -->
+        <div class="footer__contacts">
+          <h4>Контакти</h4>
+          <p class="footer__phone">0 800 50 50 50</p>
+          <p>Безкоштовно по Україні</p>
+          <p>Щодня з 08:00 до 22:00</p>
+          <p class="gap">м. Київ, просп. Академіка Глушкова, 4г</p>
+          <p>info@apteka.ua</p>
+        </div>
+      </div>
+
+      <div class="footer__warning">
+        <span>САМОЛІКУВАННЯ МОЖЕ БУТИ ШКІДЛИВИМ ДЛЯ ВАШОГО ЗДОРОВ'Я</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Мобільна нижня навігація -->
+  <nav class="mobile-nav" aria-label="Мобільна навігація">
+    <a href="index.html" class="mobile-nav__item">
+      <span class="icon icon--home"></span>
+      <span>Головна</span>
+    </a>
+    <a href="catalog.html" class="mobile-nav__item">
+      <span class="icon icon--catalog"></span>
+      <span>Каталог</span>
+    </a>
+    <a href="pharmacies.html" class="mobile-nav__item">
+      <span class="icon icon--location"></span>
+      <span>Всі аптеки</span>
+    </a>
+    <a href="#" class="mobile-nav__item">
+      <span class="icon icon--saved"></span>
+      <span>Обране</span>
+    </a>
+    <a href="checkout.html" class="mobile-nav__item">
+      <span class="icon icon--shop"></span>
+      <span>Кошик</span>
+    </a>
+  </nav>
+
+  <!-- Скрипт для перегляду інформації в футері на мобільному -->
+  <script>
+    document.querySelectorAll('.footer__title').forEach(title => {
+      title.addEventListener('click', () => {
+        if (window.innerWidth <= 640) {
+          title.parentElement.classList.toggle('is-open');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
