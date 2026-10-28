@@ -1,0 +1,828 @@
+/* ==========================================================================
+   СТИЛІ ДЛЯ СТОРІНКИ ТОВАРУ (PRODUCT.HTML)
+   ========================================================================== */
+   html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Відступ прокрутки до якорів з урахуванням шапки */
+  .product-info h2[id] {
+    scroll-margin-top: calc(var(--header-h) + 60px);
+  }
+  
+  /* ---------- Смуга-вкладки під шапкою (Десктоп) ---------- */
+  .subnav {
+    position: sticky;
+    top: var(--header-h);
+    z-index: 90;
+    background: rgba(197, 193, 170, .85);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  
+  .subnav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    height: 46px;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 44px;
+  }
+  
+  .subnav__links {
+    display: flex;
+    gap: 24px;
+    font: 500 13px var(--font-heading);
+    color: #4a4a40;
+  }
+  
+  .subnav__links a {
+    transition: background-color .2s, border-color .2s, color .2s;
+  }
+  
+  .subnav__links a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Перемикання вкладок без JS на основі URL-якоря :target */
+  body:not(:has(:target)) .subnav__links a[href="#all"],
+  body:has(#all:target) .subnav__links a[href="#all"],
+  body:has(#specs:target) .subnav__links a[href="#specs"],
+  body:has(#instruction:target) .subnav__links a[href="#instruction"],
+  body:has(#reviews:target) .subnav__links a[href="#reviews"],
+  body:has(#faq:target) .subnav__links a[href="#faq"] {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+  
+  /* Міні-товар у смузі при скролі */
+  .subnav__mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+    padding: 4px 10px;
+    background: #fff;
+    border-radius: var(--radius-sm);
+    font: 500 10px/1.3 var(--font-heading);
+    max-width: 330px;
+  }
+  
+  .subnav__mini img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+  }
+  
+  .subnav__mini strong {
+    font: 700 13px var(--font-heading);
+    white-space: nowrap;
+  }
+  
+  body { timeline-scope: --buy; }
+  .buy-box { view-timeline: --buy block; view-timeline-inset: calc(var(--header-h) + 46px) 0; }
+  @supports (animation-timeline: view()) {
+    .subnav__mini, .subnav__cta { animation: subnav-reveal linear both; animation-timeline: --buy; animation-range: exit 0% exit 60%; }
+  }
+  @keyframes subnav-reveal {
+    from { opacity: 0; transform: translateY(-8px); pointer-events: none; }
+    to   { opacity: 1; transform: none;             pointer-events: auto; }
+  }
+  
+  /* Кнопка додавання товару */
+  .btn-buy {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 48px;
+    padding: 0 22px;
+    border: 0;
+    border-radius: var(--radius-sm);
+    background: var(--color-primary);
+    color: #fff;
+    font: 700 17px var(--font-heading);
+    transition: background .2s, transform .2s;
+  }
+  
+  .btn-buy .icon {
+    --icon-size: 26px;
+    color: #fff;
+  }
+  
+  .btn-buy:hover {
+    background: #17392f;
+    transform: scale(1.03);
+  }
+  
+  .btn-buy:active {
+    transform: scale(.97);
+  }
+  
+  .btn-buy--sm {
+    height: 34px;
+    padding: 0 14px;
+    font-size: 13px;
+  }
+  
+  .btn-buy--sm .icon {
+    --icon-size: 20px;
+  }
+  
+  /* Хлібні крихти */
+  .breadcrumbs {
+    margin: 8px 0 12px;
+    font: 400 8px var(--font-heading);
+    color: var(--color-primary);
+  }
+  
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+  
+  .breadcrumbs span {
+    font-weight: 600;
+  }
+  
+  /* Верхній блок: Галерея + Опис */
+  .product-top {
+    display: grid;
+    grid-template-columns: 29% 1fr;
+    gap: 44px;
+    align-items: start;
+  }
+  
+  .gallery__main {
+    position: relative;
+    display: grid;
+    place-items: center;
+    height: 266px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+  }
+  
+  .gallery__main > img {
+    max-height: 210px;
+    width: auto;
+    object-fit: contain;
+  }
+  
+  .gallery-arrow {
+    display: none;
+  }
+  
+  .gallery__dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    display: flex;
+    gap: 10px;
+    transform: translateX(-50%);
+  }
+  
+  .gallery__dots i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #c9c9c9;
+  }
+  
+  .gallery__dots i.is-active {
+    background: var(--color-primary);
+  }
+  
+  .gallery__thumbs {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+  }
+  
+  .gallery__thumbs > img {
+    flex: 1;
+    min-width: 0;
+    height: 88px;
+    border-radius: 3px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform .2s;
+  }
+  
+  .gallery__thumbs > img:hover {
+    transform: scale(1.04);
+  }
+  
+  .thumb-arrow {
+    flex: none;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--color-bg-soft);
+    color: var(--color-primary);
+    display: grid;
+    place-items: center;
+    transition: transform .2s;
+  }
+  
+  .thumb-arrow .icon {
+    --icon-size: 12px;
+  }
+  
+  .thumb-arrow:hover {
+    transform: scale(1.15);
+  }
+  
+  .product-main__head {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  
+  .product-main h1 {
+    font: 700 21px/1.45 var(--font-heading);
+    color: var(--color-primary);
+  }
+  
+  .product-main__save {
+    position: relative;
+    flex: none;
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-sm);
+  }
+  
+  .product-main__save .icon {
+    --icon-size: 22px;
+  }
+  
+  .product-main__label {
+    margin: 14px 0 8px;
+    font: 400 12px var(--font-body);
+    color: #444;
+  }
+  
+  /* Кількість в упаковці */
+  .qty {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .qty__btn {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 55px;
+    height: 50px;
+    cursor: pointer;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: #fff;
+    font: 500 14px var(--font-body);
+    color: var(--color-text);
+    transition: border-color .2s, background .2s, color .2s;
+  }
+  
+  .qty__btn input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .qty__btn:hover {
+    border-color: var(--color-primary);
+  }
+  
+  .qty__btn:has(input:checked) {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+  }
+  
+  .qty__btn:has(input:focus-visible) {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+  
+  .price--10 { display: none; }
+  body:has(#qty-10:checked) .price--10 { display: inline; }
+  body:has(#qty-10:checked) .price--20 { display: none; }
+  
+  .product-main__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    font: 400 12px var(--font-body);
+    color: #555;
+  }
+  
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .stars {
+    --rating: 4.5;
+    font-size: 20px;
+    letter-spacing: 2px;
+    line-height: 1;
+    background: linear-gradient(90deg, #E8C547 calc(var(--rating) / 5 * 100%), #D9D9D9 0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .rating small {
+    font-size: 9px;
+    color: var(--color-text-muted);
+  }
+  
+  .product-main__stock {
+    margin: 8px 0 10px;
+    font: 400 9px var(--font-body);
+    color: #555;
+  }
+  
+  /* Блок покупки */
+  .buy-box {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 30px 8px 8px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+  }
+  
+  .buy-box__label {
+    position: absolute;
+    top: 6px;
+    left: 12px;
+    font: 400 10px var(--font-body);
+    color: #555;
+  }
+  
+  .buy-box__avail {
+    position: absolute;
+    top: 4px;
+    right: 20%;
+    font: 600 9px var(--font-heading);
+    color: var(--color-primary);
+  }
+  
+  .buy-box__price {
+    font: 700 28px var(--font-heading);
+  }
+  
+  .buy-box .btn-buy {
+    width: 240px;
+    height: 52px;
+  }
+  
+  /* Опис товару */
+  .product-info {
+    margin-top: 16px;
+    padding-bottom: 80px;
+  }
+  
+  .product-info h2 {
+    margin: 0 0 6px;
+    font: 700 23px var(--font-heading);
+    color: var(--color-primary);
+  }
+  
+  .product-info h2:not(:first-child) {
+    margin-top: 18px;
+  }
+  
+  .product-info p {
+    font: 400 12.5px/1.55 var(--font-body);
+    color: #555;
+  }
+  
+  .product-info em {
+    font-style: italic;
+  }
+  
+  .floating-buy {
+    display: none;
+  }
+  
+  
+  /* ==========================================================================
+     АДАПТИВНІ СТИЛІ ДЛЯ ПЛАНШЕТА (641px – 1024px)
+     ========================================================================== */
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .subnav {
+      position: static;
+      background: transparent;
+      padding: 14px 0 6px;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+  
+    .subnav__inner {
+      padding: 0 24px;
+      height: auto;
+    }
+  
+    .subnav__links {
+      gap: 10px;
+      overflow-x: auto;
+      width: 100%;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+  
+    .subnav__links::-webkit-scrollbar {
+      display: none;
+    }
+  
+    .subnav__links a {
+      flex: none;
+      padding: 8px 18px;
+      background: #fff;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      color: var(--color-text);
+    }
+  
+    /* Чисте перемикання кольору пігулки при виборі через якір */
+    body:not(:has(:target)) .subnav__links a[href="#all"],
+    body:has(#all:target) .subnav__links a[href="#all"],
+    body:has(#specs:target) .subnav__links a[href="#specs"],
+    body:has(#instruction:target) .subnav__links a[href="#instruction"],
+    body:has(#reviews:target) .subnav__links a[href="#reviews"],
+    body:has(#faq:target) .subnav__links a[href="#faq"] {
+      background-color: var(--color-primary);
+      border-color: var(--color-primary);
+      color: #fff;
+    }
+  
+    .subnav__mini,
+    .subnav__cta {
+      display: none !important;
+    }
+  
+    .product-top {
+      grid-template-columns: 38% 1fr;
+      gap: 24px;
+    }
+  
+    .product-main h1 {
+      font-size: 18px;
+    }
+  
+    .product-main__save {
+      width: 44px;
+      height: 44px;
+    }
+  
+    .buy-box {
+      padding: 24px 10px 8px;
+    }
+  
+    .buy-box__price {
+      font-size: 24px;
+    }
+  
+    .buy-box .btn-buy {
+      width: 180px;
+      height: 46px;
+      font-size: 15px;
+    }
+  
+    .floating-buy {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      left: 24px;
+      right: 24px;
+      max-width: 520px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 10px 16px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+      z-index: 95;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    .floating-buy.is-visible {
+      display: flex;
+    }
+  
+    .floating-buy__info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+  
+    .floating-buy__info img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+    }
+  
+    .floating-buy__title {
+      display: block;
+      font: 600 12px var(--font-heading);
+      color: var(--color-text);
+    }
+  
+    .floating-buy__price {
+      font: 700 16px var(--font-heading);
+      color: var(--color-primary);
+    }
+  
+    .floating-buy__actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  
+    .floating-buy__up {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--color-primary);
+      color: #fff;
+      font-weight: bold;
+    }
+  }
+  
+  
+  /* ==========================================================================
+     АДАПТИВНІ СТИЛІ ДЛЯ ТЕЛЕФОНА (≤ 640px)
+     ========================================================================== */
+  @media (max-width: 640px) {
+    .subnav {
+      position: static;
+      background: transparent;
+      padding: 10px 0 4px;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+  
+    .subnav__inner {
+      padding: 0 14px;
+      height: auto;
+    }
+  
+    .subnav__links {
+      gap: 8px;
+      overflow-x: auto;
+      width: 100%;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+  
+    .subnav__links::-webkit-scrollbar {
+      display: none;
+    }
+  
+    .subnav__links a {
+      flex: none;
+      padding: 6px 14px;
+      background: #fff;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      color: var(--color-text);
+    }
+  
+    /* Підсвічування вибраної вкладки зеленим */
+    body:not(:has(:target)) .subnav__links a[href="#all"],
+    body:has(#all:target) .subnav__links a[href="#all"],
+    body:has(#specs:target) .subnav__links a[href="#specs"],
+    body:has(#instruction:target) .subnav__links a[href="#instruction"],
+    body:has(#reviews:target) .subnav__links a[href="#reviews"],
+    body:has(#faq:target) .subnav__links a[href="#faq"] {
+      background-color: var(--color-primary);
+      border-color: var(--color-primary);
+      color: #fff;
+    }
+  
+    .subnav__mini,
+    .subnav__cta {
+      display: none !important;
+    }
+  
+    .product-top {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+  
+    .product-main {
+      display: contents;
+    }
+  
+    .product-main__head {
+      order: 1;
+      margin-bottom: 12px;
+    }
+  
+    .product-main h1 {
+      font-size: 16px;
+      line-height: 1.35;
+    }
+  
+    .product-main__save {
+      width: 36px;
+      height: 36px;
+    }
+  
+    .product-main__save .icon {
+      --icon-size: 18px;
+    }
+  
+    .gallery {
+      order: 2;
+      width: 100%;
+      margin-bottom: 16px;
+    }
+  
+    .gallery__main {
+      height: 200px;
+      position: relative;
+    }
+  
+    .gallery__main > img {
+      max-height: 150px;
+    }
+  
+    .gallery-arrow {
+      display: grid;
+      place-items: center;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 0;
+      background: rgba(0, 0, 0, 0.05);
+      color: #777;
+      z-index: 3;
+    }
+  
+    .gallery-arrow--prev { left: 8px; }
+    .gallery-arrow--next { right: 8px; }
+    .gallery-arrow .icon { --icon-size: 14px; }
+  
+    .gallery__thumbs {
+      display: none;
+    }
+  
+    .product-main__label {
+      order: 3;
+      margin: 10px 0 6px;
+    }
+  
+    .qty {
+      order: 4;
+      margin-bottom: 12px;
+    }
+  
+    .qty__btn {
+      width: 48px;
+      height: 42px;
+      font-size: 13px;
+    }
+  
+    .product-main__meta {
+      order: 5;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      margin-top: 0;
+    }
+  
+    .product-main__stock {
+      order: 6;
+      margin: 6px 0 14px;
+    }
+  
+    /* Блок покупки розтягнутий на всю ширину екрана */
+    .buy-box {
+      order: 7;
+      width: calc(100% + 40px);
+      margin-left: -20px;
+      margin-right: -20px;
+      margin-bottom: 24px;
+      padding: 22px 16px 14px;
+      border-left: 0;
+      border-right: 0;
+      border-radius: 0;
+      background: #fff;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+  
+    .buy-box__price {
+      font-size: 24px;
+    }
+  
+    .buy-box .btn-buy {
+      flex: 1;
+      max-width: 180px;
+      height: 44px;
+      font-size: 14px;
+    }
+  
+    .product-info {
+      order: 8;
+      margin-top: 0;
+      padding-bottom: 100px;
+    }
+  
+    .product-info h2 {
+      font-size: 18px;
+    }
+  
+    /* Плаваюча плашка над мобільним бежевим меню */
+    .floating-buy {
+      display: none;
+      position: fixed;
+      bottom: 64px;
+      left: 12px;
+      right: 12px;
+      background: #fff;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
+      z-index: 999;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    .floating-buy.is-visible {
+      display: flex;
+    }
+  
+    .floating-buy__info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      max-width: 60%;
+    }
+  
+    .floating-buy__info img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+  
+    .floating-buy__title {
+      display: block;
+      font: 600 10px var(--font-heading);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  
+    .floating-buy__price {
+      font: 700 13px var(--font-heading);
+      color: var(--color-primary);
+    }
+  
+    .floating-buy__actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+  
+    .floating-buy .btn-buy {
+      height: 32px;
+      padding: 0 12px;
+      font-size: 11px;
+    }
+  
+    .floating-buy__up {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--color-primary);
+      color: #fff;
+      font-weight: bold;
+      font-size: 13px;
+    }
+  }

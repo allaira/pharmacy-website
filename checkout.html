@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Оформлення замовлення — Аптека</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+  <!-- Спрощена шапка сторінки -->
+  <header class="header-simple">
+    <a href="index.html" class="logo">
+      <img src="img/logo.png" alt="Аптека">
+      <span>Аптека</span>
+    </a>
+  </header>
+
+  <main class="container checkout">
+    <!-- Заголовок зі стрілочкою повернення -->
+    <div class="checkout__title">
+      <a href="index.html" class="checkout__back" aria-label="Назад">
+        <span class="icon icon--return"></span>
+      </a>
+      <h1>Оформлення замовлення</h1>
+    </div>
+
+    <form class="checkout__grid" action="#" method="post">
+      <div class="checkout__main">
+
+        <!-- Контактна інформація -->
+        <section class="card contact">
+          <div class="contact__form">
+            <h2>Контактна інформація</h2>
+
+            <div class="field field--phone">
+              <details class="flag-select">
+                <summary aria-label="Код країни">
+                  <img src="img/flag.png" alt="Україна">
+                  <svg class="chev" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                </summary>
+                <ul>
+                  <li><img src="img/flag.png" alt="">Україна <span>+380</span></li>
+                </ul>
+              </details>
+              <input type="tel" name="phone" placeholder="Ваш телефон" inputmode="tel" autocomplete="tel" required
+                     pattern="(\+?38)?0[0-9]{9}" title="Номер у форматі 0501234567 або +380501234567">
+              <span class="field__error">Введіть коректний номер, наприклад 0501234567</span>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <input type="text" name="first-name" placeholder="Ім'я" autocomplete="given-name" required>
+                <span class="field__error">Вкажіть ім'я</span>
+              </div>
+              <div class="field">
+                <input type="text" name="last-name" placeholder="Прізвище" autocomplete="family-name" required>
+                <span class="field__error">Вкажіть прізвище</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <input type="email" name="email" placeholder="Ваш e-mail (необов'язково)" autocomplete="email">
+              <span class="field__error">Перевірте адресу e-mail</span>
+            </div>
+          </div>
+
+          <div class="contact__login">
+            <p>Або авторизуйтесь за допомогою кнопки, щоб ми автоматично заповнили ваші дані</p>
+            <a href="#" class="btn-login"><span class="icon icon--user"></span>Увійти</a>
+            <div class="or"><span>АБО</span></div>
+            <p>Немає облікового запису? <a href="#" class="link">Зареєструйтесь</a> для відслідковування замовлень в особистому кабінеті і автоматичного заповнення даних</p>
+          </div>
+        </section>
+
+        <!-- Спосіб доставки -->
+        <section class="card delivery">
+          <div class="delivery__city">
+            <h2>Ваше місто</h2>
+            <a href="#city-modal" class="city-link">
+              Будь ласка, оберіть ваше місто
+              <svg class="chev" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+          </div>
+
+          <div class="delivery__head">
+            <span>СПОСІБ ДОСТАВКИ</span>
+            <span>ОРІЄНТОВНА ДАТА</span>
+            <span>ВАРТІСТЬ</span>
+          </div>
+
+          <div class="delivery__list is-disabled">
+            <label class="delivery__row">
+              <input type="radio" name="delivery" id="d-pharmacy" disabled>
+              <span class="delivery__main">
+                <span class="radio"></span>
+                <img src="img/logo.png" alt="">
+                <span class="delivery__name">Самовивіз з аптеки</span>
+              </span>
+              <span class="delivery__date">—</span>
+              <span class="delivery__price">Безкоштовно</span>
+            </label>
+
+            <label class="delivery__row">
+              <input type="radio" name="delivery" id="d-ukr" disabled>
+              <span class="delivery__main">
+                <span class="radio"></span>
+                <img src="img/ukrposhta.png" alt="">
+                <span class="delivery__name">Укрпошта відділення</span>
+              </span>
+              <span class="delivery__date">—</span>
+              <span class="delivery__price">Від 50 грн</span>
+            </label>
+
+            <label class="delivery__row">
+              <input type="radio" name="delivery" id="d-np-branch" disabled>
+              <span class="delivery__main">
+                <span class="radio"></span>
+                <img src="img/novaposhta.png" alt="">
+                <span class="delivery__name">Нова Пошта відділення</span>
+              </span>
+              <span class="delivery__date">—</span>
+              <span class="delivery__price">90 грн</span>
+            </label>
+
+            <label class="delivery__row">
+              <input type="radio" name="delivery" id="d-np-box" disabled>
+              <span class="delivery__main">
+                <span class="radio"></span>
+                <img src="img/novaposhta.png" alt="">
+                <span class="delivery__name">Нова Пошта поштомат</span>
+              </span>
+              <span class="delivery__date">—</span>
+              <span class="delivery__price">90 грн</span>
+            </label>
+
+            <label class="delivery__row">
+              <input type="radio" name="delivery" id="d-np-courier" disabled>
+              <span class="delivery__main">
+                <span class="radio"></span>
+                <img src="img/novaposhta.png" alt="">
+                <span class="delivery__name">Нова Пошта кур'єр</span>
+              </span>
+              <span class="delivery__date">—</span>
+              <span class="delivery__price">Від 150 грн</span>
+            </label>
+          </div>
+
+          <div class="help">
+            <p class="help__title">Необхідна допомога з оформленням замовлення?</p>
+            <a href="tel:0800505050" class="help__phone">
+              <span class="icon icon--phone"></span>
+              0 (800) 50 50 50
+            </a>
+            <p class="help__sub">Зв'яжіться з оператором по телефону</p>
+          </div>
+        </section>
+
+        <!-- Спосіб оплати -->
+        <section class="card pay">
+          <h2>Оберіть спосіб оплати</h2>
+          <div class="pay__grid">
+            <label class="pay__option">
+              <input type="radio" name="pay" required>
+              <span class="radio"></span>
+              <span>Оплата при отриманні</span>
+            </label>
+            <label class="pay__option">
+              <input type="radio" name="pay">
+              <span class="radio"></span>
+              <span>Оплата карткою онлайн</span>
+            </label>
+            <label class="pay__option">
+              <input type="radio" name="pay">
+              <span class="radio"></span>
+              <span>Apple Pay / Google Pay</span>
+            </label>
+          </div>
+        </section>
+      </div>
+
+      <!-- Ваше замовлення -->
+      <aside class="card summary">
+        <div class="summary__head">
+          <h2>Ваше замовлення</h2>
+          <a href="#order-modal" class="summary__edit" aria-label="Редагувати замовлення">
+            <span class="icon icon--pencil"></span>
+          </a>
+        </div>
+
+        <dl class="summary__rows">
+          <div><dt>Товари:</dt><dd>349,00 ₴</dd></div>
+          <div>
+            <dt>Доставка:</dt>
+            <dd>
+              <span class="v v-none">Ще не розрахована</span>
+              <span class="v v-pharmacy">Безкоштовно</span>
+              <span class="v v-ukr">від 50 ₴</span>
+              <span class="v v-np-branch">90 ₴</span>
+              <span class="v v-np-box">90 ₴</span>
+              <span class="v v-np-courier">від 150 ₴</span>
+            </dd>
+          </div>
+          <div class="summary__total">
+            <dt>Підсумок:</dt>
+            <dd>
+              <span class="v v-none v-pharmacy">349,00 ₴</span>
+              <span class="v v-ukr">від 399,00 ₴</span>
+              <span class="v v-np-branch">439,00 ₴</span>
+              <span class="v v-np-box">439,00 ₴</span>
+              <span class="v v-np-courier">від 499,00 ₴</span>
+            </dd>
+          </div>
+        </dl>
+
+        <a href="#" class="link summary__promo">Використати промокод</a>
+
+        <label class="check">
+          <input type="checkbox" required checked>
+          <span>Підтверджуючи замовлення, я приймаю умови угоди використання сайту і даю згоду на обробку моїх персональних даних</span>
+        </label>
+        <label class="check check--muted">
+          <input type="checkbox" name="no-call">
+          <span>Не передзвонювати мені</span>
+        </label>
+
+        <hr class="summary__line">
+
+        <input type="checkbox" id="fold" class="fold-toggle">
+        <div class="summary__item">
+          <img src="img/nurofen.png" alt="">
+          <div>
+            <strong>Нурофєн експрес форте, капс...</strong>
+            <small>1 упаковка</small>
+          </div>
+        </div>
+        <label for="fold" class="link summary__fold">
+          <span class="when-open">Згорнути склад замовлення</span>
+          <span class="when-closed">Розгорнути склад замовлення</span>
+        </label>
+
+        <a href="#" class="link summary__comment">
+          <span class="icon icon--message"></span>
+          Додати коментар
+        </a>
+        <textarea class="summary__textarea" name="comment" aria-label="Коментар до замовлення"></textarea>
+
+        <button type="submit" class="btn-confirm">Підтвердити замовлення</button>
+      </aside>
+    </form>
+  </main>
+
+  <!-- Футер -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__pay">
+          <span class="footer__label">Ми приймаємо:</span>
+          <img src="img/mastercard.png" alt="Mastercard">
+          <img src="img/visa.png" alt="Visa">
+          <img src="img/apple-pay.png" alt="Apple Pay">
+          <img src="img/google-pay.png" alt="Google Pay">
+        </div>
+        <div class="footer__social">
+          <span class="footer__label">Слідкуйте за нами:</span>
+          <a href="#" aria-label="Facebook"><img src="img/facebook.png" alt="Facebook"></a>
+          <a href="#" aria-label="Telegram"><img src="img/telegram.png" alt="Telegram"></a>
+          <a href="#" aria-label="YouTube"><img src="img/youtube.png" alt="YouTube"></a>
+          <a href="#" aria-label="Instagram"><img src="img/instagram.png" alt="Instagram"></a>
+        </div>
+      </div>
+
+      <hr class="footer__line">
+
+      <div class="footer__cols">
+        <!-- Покупцям -->
+        <div class="footer__col">
+          <h4 class="footer__title">Покупцям</h4>
+          <ul class="footer__list">
+            <li><a href="#">Про компанію</a></li>
+            <li><a href="#">Розшифровка рецепту з фото</a></li>
+            <li><a href="#">Акції</a></li>
+            <li><a href="#">Блог</a></li>
+            <li><a href="#">Корпоративним клієнтам та юридичним особам</a></li>
+            <li><a href="#">Оплата і доставка</a></li>
+            <li><a href="#">Повернення товару</a></li>
+            <li><a href="#">Контроль якості</a></li>
+            <li><a href="#">Питання?</a></li>
+          </ul>
+        </div>
+
+        <!-- Інформація -->
+        <div class="footer__col">
+          <h4 class="footer__title">Інформація</h4>
+          <ul class="footer__list">
+            <li><a href="#">Всі аптеки</a></li>
+            <li><a href="#">Аптеки партнери</a></li>
+            <li><a href="#">Як зробити замовлення?</a></li>
+            <li><a href="#">Умови використання сайту</a></li>
+            <li><a href="#">Політика конфіденційності</a></li>
+            <li><a href="#">Новини</a></li>
+            <li><a href="#">Доступні ліки</a></li>
+            <li><a href="#">Маркетингова політика</a></li>
+            <li><a href="#">Контакти</a></li>
+          </ul>
+        </div>
+
+        <!-- Контакти -->
+        <div class="footer__contacts">
+          <h4>Контакти</h4>
+          <p class="footer__phone">0 800 50 50 50</p>
+          <p>Безкоштовно по Україні</p>
+          <p>Щодня з 08:00 до 22:00</p>
+          <p class="gap">м. Київ, просп. Академіка Глушкова, 4г</p>
+          <p>info@apteka.ua</p>
+        </div>
+      </div>
+
+      <div class="footer__warning">
+        <span>САМОЛІКУВАННЯ МОЖЕ БУТИ ШКІДЛИВИМ ДЛЯ ВАШОГО ЗДОРОВ'Я</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Мобільна навігація -->
+  <nav class="mobile-nav" aria-label="Мобільна навігація">
+    <a href="index.html" class="mobile-nav__item"><span class="icon icon--home"></span><span>Головна</span></a>
+    <a href="catalog.html" class="mobile-nav__item"><span class="icon icon--catalog"></span><span>Каталог</span></a>
+    <a href="pharmacies.html" class="mobile-nav__item"><span class="icon icon--location"></span><span>Всі аптеки</span></a>
+    <a href="#" class="mobile-nav__item"><span class="icon icon--saved"></span><span>Обране</span></a>
+    <a href="checkout.html" class="mobile-nav__item"><span class="icon icon--shop"></span><span>Кошик</span></a>
+  </nav>
+
+  <!-- Модальне вікно вибір міста -->
+  <div class="modal" id="city-modal">
+    <a href="#" class="modal__overlay" aria-label="Закрити"></a>
+    <div class="modal__dialog">
+      <a href="#" class="modal__close modal__close--light" aria-label="Закрити">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </a>
+      <div class="city__top">
+        <label for="city-input">Ваш населений пункт:</label>
+        <div class="city__search">
+          <input id="city-input" type="text" placeholder="Введіть назву міста" autocomplete="off">
+          <button type="button" aria-label="Визначити місцезнаходження">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.5" fill="currentColor"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+          </button>
+        </div>
+        <p>Ми возимо у всі населені пункти України. Вкажіть необхідне Вам місто чи село, щоб побачити доступні способи доставки</p>
+      </div>
+      <div class="city__popular">
+        <h3>Популярні міста:</h3>
+        <div class="city__chips">
+          <a href="#" class="city-chip">Київ</a>
+          <a href="#" class="city-chip">Львів</a>
+          <a href="#" class="city-chip">Харків</a>
+          <a href="#" class="city-chip">Одеса</a>
+          <a href="#" class="city-chip">Дніпро</a>
+          <a href="#" class="city-chip">Луцьк</a>
+          <a href="#" class="city-chip">Полтава</a>
+          <a href="#" class="city-chip">Запоріжжя</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальне вікно редагування замовлення -->
+  <div class="modal" id="order-modal">
+    <a href="#" class="modal__overlay" aria-label="Закрити"></a>
+    <div class="modal__dialog modal__dialog--order">
+      <a href="#" class="modal__close modal__close--dark" aria-label="Закрити">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </a>
+      <div class="order-item">
+        <img src="img/nurofen.png" alt="Нурофєн експрес форте">
+        <div class="order-item__info">
+          <h3>Нурофєн експрес форте</h3>
+          <small>Арт: 814278</small>
+          <div class="order-item__qty">
+            <button type="button" class="qty-btn" aria-label="Менше">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>
+            </button>
+            <span>1</span>
+            <button type="button" class="qty-btn" aria-label="Більше">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </div>
+        <button type="button" class="order-item__delete" aria-label="Видалити товар">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Скрипт для перегляду інформації в футері на мобільному -->
+  <script>
+    document.querySelectorAll('.footer__title').forEach(title => {
+      title.addEventListener('click', () => {
+        if (window.innerWidth <= 640) {
+          title.parentElement.classList.toggle('is-open');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

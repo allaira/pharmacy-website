@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Нурофєн експрес форте — Аптека</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/product.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar__inner">
+      <span>Гаряча лінія: <strong>0 (800) 50 50 50</strong></span>
+      <a href="#" class="topbar__city"><span class="icon icon--location"></span>Київ</a>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="header__inner">
+      <a href="index.html" class="logo"><img src="img/logo.png" alt="Аптека"><span>Аптека</span></a>
+      <a href="catalog.html" class="pill btn-catalog"><span class="icon icon--catalog"></span>Каталог</a>
+      <form class="search" role="search">
+        <input type="search" placeholder="Пошук ліків, вітамінів та товарів..." aria-label="Пошук">
+        <button class="search__btn" aria-label="Шукати"><span class="icon icon--search"></span></button>
+      </form>
+      <a href="pharmacies.html" class="pill btn-pharmacies">Всі аптеки</a>
+      <nav class="header__actions" aria-label="Панель користувача">
+        <a href="#" class="action"><span class="action__icon"><span class="icon icon--saved"></span><span class="badge" data-count="4">4</span></span>Обране</a>
+        <a href="#" class="action"><span class="action__icon"><span class="icon icon--user"></span></span>Кабінет</a>
+        <a href="checkout.html" class="action"><span class="action__icon"><span class="icon icon--shop"></span><span class="badge" data-count="2">2</span></span>Кошик</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Смуга вкладок -->
+  <nav class="subnav">
+    <div class="subnav__inner">
+      <div class="subnav__links">
+        <a href="#all">Все про товар</a>
+        <a href="#specs">Характеристики</a>
+        <a href="#instruction">Інструкція</a>
+        <a href="#reviews">Відгуки</a>
+        <a href="#faq">Часті питання</a>
+      </div>
+      <div class="subnav__mini">
+        <img src="img/nurofen.png" alt="">
+        <span>Нурофєн експрес форте, капсули м'які по 400 мг, 20...</span>
+        <strong><span class="price price--10">174,50 ₴</span><span class="price price--20">349,00 ₴</span></strong>
+      </div>
+      <button class="btn-buy btn-buy--sm subnav__cta"><span class="icon icon--shop"></span>Додати товар</button>
+    </div>
+  </nav>
+
+  <main class="container">
+    <p class="breadcrumbs"><a href="index.html">Головна</a> &gt; <a href="catalog.html">Сезонна аптечка</a> &gt; <span>Нурофєн експрес форте капсули м'як. по 400 мг №20 (10х2)</span></p>
+
+    <section class="product-top">
+      <div class="gallery">
+        <div class="gallery__main">
+          <button class="gallery-arrow gallery-arrow--prev" aria-label="Назад"><span class="icon icon--arrow-back"></span></button>
+          <img src="img/nurofen.png" alt="Нурофєн експрес форте">
+          <button class="gallery-arrow gallery-arrow--next" aria-label="Вперед"><span class="icon icon--arrow-forward"></span></button>
+          <div class="gallery__dots"><i class="is-active" data-index="0"></i><i data-index="1"></i><i data-index="2"></i><i data-index="3"></i></div>
+        </div>
+        <div class="gallery__thumbs">
+          <button class="thumb-arrow" aria-label="Назад"><span class="icon icon--arrow-back"></span></button>
+          <img class="is-active" data-index="0" src="img/image 1.png" alt="Фото 1">
+          <img data-index="1" src="img/image 2.png" alt="Фото 2">
+          <img data-index="2" src="img/image 3.png" alt="Фото 3">
+          <button class="thumb-arrow" aria-label="Вперед"><span class="icon icon--arrow-forward"></span></button>
+        </div>
+      </div>
+
+      <div class="product-main">
+        <div class="product-main__head">
+          <h1>Нурофєн експрес форте, капсули м'які по 400 мг, 20 шт, (ібупрофен), знеболювальна, жарознижувальна та протизапальна дія</h1>
+          <label class="save product-main__save" aria-label="В обране"><input type="checkbox"><span class="icon icon--saved"></span></label>
+        </div>
+        <p class="product-main__label">Кількість в упаковці:</p>
+        <div class="qty" role="radiogroup" aria-label="Кількість в упаковці">
+          <label class="qty__btn"><input type="radio" name="qty" id="qty-10" value="10"><span>10</span></label>
+          <label class="qty__btn"><input type="radio" name="qty" id="qty-20" value="20" checked><span>20</span></label>
+        </div>
+        <div class="product-main__meta">
+          <span>Reckitt Benckiser Healthcare (UK) (Великобританія)</span>
+          <span class="rating"><span class="stars" style="--rating: 4.5" role="img" aria-label="Рейтинг 4,5 з 5">★★★★★</span><small>219 відгуків</small></span>
+        </div>
+        <p class="product-main__stock">в 1193 аптеках</p>
+        <div class="buy-box">
+          <span class="buy-box__label">Упаковка</span>
+          <span class="buy-box__avail">В наявності</span>
+          <strong class="buy-box__price"><span class="price price--10">174,50 ₴</span><span class="price price--20">349,00 ₴</span></strong>
+          <button class="btn-buy"><span class="icon icon--shop"></span>Додати товар</button>
+        </div>
+      </div>
+    </section>
+
+    <article class="product-info">
+      <h2 id="all">Склад</h2>
+      <p><em>діюча речовина</em>: ібупрофен.<br>1 капсула м'яка містить ібупрофену 400 мг;<br><em>допоміжні речовини</em>: макрогол 600, калію гідроксид, вода очищена, желатин, сорбіту розчин частково дегідрований (Е 420), Понсо 4R (Е 124), фарба для друку на капсули Опакод WB білий NS-78-18011.</p>
+      <h2 id="specs">Лікарська форма</h2>
+      <p>Капсули м'які.<br><em>Основні фізико-хімічні властивості</em>: червоні овальні прозорі м'які желатинові капсули з ідентифікуючим написом NUROFEN, надрукованим білою фарбою.</p>
+      <h2>Показання</h2>
+      <p>Симптоматичне лікування легкого та помірного болю різного походження (головний, зубний біль, болісні менструації), в тому числі при застуді та пропасниці.</p>
+      <h2 id="instruction">Спосіб застосування та дози</h2>
+      <p>Найменша ефективна доза повинна застосовуватись протягом найменшого часу, необхідного для полегшення симптомів (див. розділ «Особливості застосування»).<br>Застосовують всередину дорослим та дітям віком від 12 років з масою тіла &gt; 40 кг. Тільки для короткотривалого застосування.<br>Небажані ефекти можна мінімізувати шляхом застосування найнижчої ефективної дози протягом найкоротшого періоду часу, необхідного для контролю симптомів.<br>Капсули слід приймати переважно під час або після прийому їжі, не розжовувати та запивати водою.<br>Разова доза для дітей віком від 12 років з масою тіла &gt; 40 кг і дорослих становить 1 капсулу (400 мг ібупрофену). За необхідності можна застосовувати по 1 капсулі кожні 6 годин. Максимальна добова доза становить 1200 мг (3 капсули на добу). Застосовувати мінімальну ефективну дозу, потрібну для лікування симптомів, протягом найкоротшого періоду часу.<br>Якщо в підлітків симптоми захворювання погіршуються або зберігаються більше 3 днів, необхідно звернутися до лікаря для уточнення діагнозу та коригування схеми лікування.<br>Якщо в дорослих підвищена температура тіла зберігається більше 3 днів або біль не зникає протягом 4 днів, або симптоми захворювання погіршуються, необхідно звернутися до лікаря для уточнення діагнозу та коригування схеми лікування.<br>Тривалість лікування визначає лікар індивідуально, залежно від перебігу захворювання та стану хворого.<br>Пацієнти літнього віку не потребують спеціального підбору дози, крім випадків вираженої ниркової або печінкової недостатності.<br>Через можливість розвитку небажаних ефектів пацієнти похилого віку потребують ретельного спостереження.<br>Пацієнти з легким та помірним порушенням функції нирок не потребують зменшення дози щодо пацієнтів з тяжкою нирковою недостатністю див. розділ «Особливості застосування».<br>Зниження дози не потрібно для пацієнтів з легким або помірним порушенням функції печінки щодо пацієнтів з тяжкою нирковою недостатністю див. розділ «Особливості застосування».<br><em>Діти.</em><br>Не застосовують дітям віком до 12 років та дітям з масою тіла &lt; 40 кг.</p>
+      <h2 id="reviews">Відгуки</h2>
+      <p>Відгуки покупців про препарат: 219 відгуків із середнім рейтингом 4.5 зірок.</p>
+      <h2 id="faq">Часті питання</h2>
+      <p>Яка ціна на Нурофєн експрес форте капсули м'як. по 400 мг №20 (10х2)<br>Нурофєн експрес форте капсули м'як. по 400 мг №20 (10х2) відпускається за рецептом?</p>
+    </article>
+  </main>
+
+  <!-- Плаваючий блок товару при скролі -->
+  <aside class="floating-buy" aria-label="Швидке замовлення">
+    <div class="floating-buy__info">
+      <img src="img/nurofen.png" alt="">
+      <div>
+        <span class="floating-buy__title">Нурофєн експрес форте, 20 шт.</span>
+        <strong class="floating-buy__price">349,00 ₴</strong>
+      </div>
+    </div>
+    <div class="floating-buy__actions">
+      <button class="btn-buy btn-buy--sm"><span class="icon icon--shop"></span>Додати</button>
+      <a href="#" class="floating-buy__up" aria-label="Вгору">↑</a>
+    </div>
+  </aside>
+
+  <!-- Футер -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__pay">
+          <span class="footer__label">Ми приймаємо:</span>
+          <img src="img/mastercard.png" alt="Mastercard">
+          <img src="img/visa.png" alt="Visa">
+          <img src="img/apple-pay.png" alt="Apple Pay">
+          <img src="img/google-pay.png" alt="Google Pay">
+        </div>
+        <div class="footer__social">
+          <span class="footer__label">Слідкуйте за нами:</span>
+          <a href="#" aria-label="Facebook"><img src="img/facebook.png" alt="Facebook"></a>
+          <a href="#" aria-label="Telegram"><img src="img/telegram.png" alt="Telegram"></a>
+          <a href="#" aria-label="YouTube"><img src="img/youtube.png" alt="YouTube"></a>
+          <a href="#" aria-label="Instagram"><img src="img/instagram.png" alt="Instagram"></a>
+        </div>
+      </div>
+
+      <hr class="footer__line">
+
+      <div class="footer__cols">
+        <!-- Покупцям -->
+        <div class="footer__col">
+          <h4 class="footer__title">Покупцям</h4>
+          <ul class="footer__list">
+            <li><a href="#">Про компанію</a></li>
+            <li><a href="#">Розшифровка рецепту з фото</a></li>
+            <li><a href="#">Акції</a></li>
+            <li><a href="#">Блог</a></li>
+            <li><a href="#">Корпоративним клієнтам та юридичним особам</a></li>
+            <li><a href="#">Оплата і доставка</a></li>
+            <li><a href="#">Повернення товару</a></li>
+            <li><a href="#">Контроль якості</a></li>
+            <li><a href="#">Питання?</a></li>
+          </ul>
+        </div>
+
+        <!-- Інформація -->
+        <div class="footer__col">
+          <h4 class="footer__title">Інформація</h4>
+          <ul class="footer__list">
+            <li><a href="#">Всі аптеки</a></li>
+            <li><a href="#">Аптеки партнери</a></li>
+            <li><a href="#">Як зробити замовлення?</a></li>
+            <li><a href="#">Умови використання сайту</a></li>
+            <li><a href="#">Політика конфіденційності</a></li>
+            <li><a href="#">Новини</a></li>
+            <li><a href="#">Доступні ліки</a></li>
+            <li><a href="#">Маркетингова політика</a></li>
+            <li><a href="#">Контакти</a></li>
+          </ul>
+        </div>
+
+        <!-- Контакти -->
+        <div class="footer__contacts">
+          <h4>Контакти</h4>
+          <p class="footer__phone">0 800 50 50 50</p>
+          <p>Безкоштовно по Україні</p>
+          <p>Щодня з 08:00 до 22:00</p>
+          <p class="gap">м. Київ, просп. Академіка Глушкова, 4г</p>
+          <p>info@apteka.ua</p>
+        </div>
+      </div>
+
+      <div class="footer__warning">
+        <span>САМОЛІКУВАННЯ МОЖЕ БУТИ ШКІДЛИВИМ ДЛЯ ВАШОГО ЗДОРОВ'Я</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Мобільна навігація -->
+  <nav class="mobile-nav" aria-label="Мобільна навігація">
+    <a href="index.html" class="mobile-nav__item"><span class="icon icon--home"></span><span>Головна</span></a>
+    <a href="catalog.html" class="mobile-nav__item"><span class="icon icon--catalog"></span><span>Каталог</span></a>
+    <a href="pharmacies.html" class="mobile-nav__item"><span class="icon icon--location"></span><span>Всі аптеки</span></a>
+    <a href="#" class="mobile-nav__item"><span class="icon icon--saved"></span><span>Обране</span></a>
+    <a href="checkout.html" class="mobile-nav__item"><span class="icon icon--shop"></span><span>Кошик</span></a>
+  </nav>
+
+  <!-- Скрипт для перегляду інформації в футері на мобільному -->
+  <script>
+    document.querySelectorAll('.footer__title').forEach(title => {
+      title.addEventListener('click', () => {
+        if (window.innerWidth <= 640) {
+          title.parentElement.classList.toggle('is-open');
+        }
+      });
+    });
+
+    // Поява плаваючої плашки при скролі повз блок покупки
+    <!-- Скрипт для перегляду інформації в футері на мобільному -->
+    const floatingBuy = document.querySelector('.floating-buy');
+    const buyBox = document.querySelector('.buy-box');
+    if (floatingBuy && buyBox) {
+      window.addEventListener('scroll', () => {
+        if (window.innerWidth <= 1024) {
+          const rect = buyBox.getBoundingClientRect();
+          if (rect.bottom < 0) {
+            floatingBuy.classList.add('is-visible');
+          } else {
+            floatingBuy.classList.remove('is-visible');
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+:root { --map-h: 930px; --ph-panel: #EEEEE6; --ph-card: #F7F7F3; --ph-border: #DADAD0; }
+
+.pharmacies { width: 100%; max-width: 1440px; margin: 0 auto; padding: 0 40px 44px; }
+.link { color: var(--color-primary); text-decoration: underline; }
+
+.breadcrumbs { margin: 12px 0 8px; font: 400 8px var(--font-heading); color: #8a8a80; }
+.breadcrumbs span { color: var(--color-primary); }
+.pharmacies__title { margin-bottom: 14px; font: 700 22px var(--font-heading); color: var(--color-text); }
+.city-edit { display: inline-flex; align-items: center; gap: 6px; color: var(--color-primary); }
+.city-edit img { width: 16px; height: 16px; }
+
+/*  Пошук + карта  */
+.finder { display: grid; grid-template-columns: 417px minmax(0, 1fr); gap: 16px; height: var(--map-h); }
+.finder__panel { display: flex; flex-direction: column; min-height: 0; padding: 12px; background: var(--ph-panel); border-radius: var(--radius-sm); }
+
+.finder__search { position: relative; margin-bottom: 10px; }
+.finder__search input {
+  width: 100%; height: 40px; padding: 0 50px 0 40px; border: 1px solid var(--ph-border); border-radius: var(--radius-sm);
+  background: #fff; font: 400 11px var(--font-body);
+}
+.finder__search input::placeholder { color: #9a9a9a; }
+.finder__search input:focus { outline: 2px solid var(--color-primary); }
+.finder__lens { position: absolute; left: 12px; top: 50%; width: 18px; height: 18px; transform: translateY(-50%); }
+.finder__locate { position: absolute; right: 6px; top: 50%; width: 30px; height: 30px; padding: 0; border: 0; background: none; transform: translateY(-50%); }
+.finder__locate img { width: 100%; height: 100%; }
+
+.finder__chips { display: flex; gap: 8px; margin-bottom: 10px; }
+.chip { height: 28px; padding: 0 14px; border: 1px solid var(--ph-border); border-radius: var(--radius-pill); background: #fff; font: 400 11px var(--font-heading); color: var(--color-text); }
+.chip:hover { border-color: var(--color-primary); }
+.chip.is-active { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+
+.finder__count { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font: 400 11px var(--font-heading); color: #6a6a60; }
+.sort { display: inline-flex; align-items: center; gap: 4px; padding: 0; border: 0; background: none; font: 500 11px var(--font-heading); color: var(--color-text); }
+.sort img { width: 10px; height: 10px; }
+
+/*  Список аптек  */
+.finder__list { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 10px; overflow-y: auto; padding-right: 4px; scrollbar-width: thin; scrollbar-color: var(--color-primary) transparent; }
+.ph-card { position: relative; flex: none; padding: 12px 14px 10px; background: var(--ph-card); border: 1px solid var(--ph-border); border-radius: var(--radius-sm); }
+.ph-card__name { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.ph-card__name img { width: 26px; height: 26px; }
+.ph-card__name h3 { font: 600 16px var(--font-heading); color: #4a4a40; }
+.ph-card__addr { margin-bottom: 8px; font: 400 11px var(--font-heading); color: #555; }
+.ph-card__bottom { display: flex; justify-content: space-between; align-items: flex-end; }
+.ph-card__hours { font: 400 10px/1.3 var(--font-heading); color: #8a8a80; }
+.ph-card__map { display: inline-flex; align-items: center; gap: 4px; font: 500 10px var(--font-heading); color: var(--color-primary); }
+.ph-card__map img { width: 12px; height: 12px; }
+.ph-card__gen { display: inline-flex; align-items: center; gap: 4px; margin-top: 6px; font: 500 10px var(--font-heading); color: var(--color-primary); }
+.ph-card__gen img { width: 12px; height: 12px; }
+.ph-card:hover { border-color: var(--color-primary); }
+
+/*  Карта (заглушка; пізніше сюди  Google Maps)  */
+.map { position: relative; overflow: hidden; background: #E5E3D8; border-radius: var(--radius-sm); }
+.map__img { width: 100%; height: 100%; object-fit: cover; }
+.map__zoom { position: absolute; top: 10px; left: 10px; display: flex; flex-direction: column; background: #fff; border-radius: 3px; box-shadow: 0 1px 4px rgba(0,0,0,.3); }
+.map__zoom button { width: 32px; height: 32px; padding: 0; border: 0; background: none; font: 400 22px var(--font-body); color: #666; }
+.map__zoom button + button { border-top: 1px solid #ddd; }
+
+/*  Контакти  */
+.contacts { margin-top: 24px; }
+.contacts h2 { margin-bottom: 10px; font: 700 22px var(--font-heading); color: var(--color-text); }
+.contacts__grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--ph-border); background: var(--ph-card); }
+.contacts__cell { padding: 14px 16px 18px; text-align: center; font: 400 14px/1.45 var(--font-heading); color: #4a4a40; }
+.contacts__cell + .contacts__cell { border-left: 1px solid var(--ph-border); }
+.contacts__cell h3 { margin-bottom: 10px; font: 600 22px var(--font-heading); color: #4a4a40; }
+.contacts__phone { display: block; margin-top: 6px; font: 600 18px var(--font-heading); color: var(--color-primary); }
+.contacts__time { text-align: left; margin-top: 8px; }
+.contacts__social { display: flex; justify-content: center; gap: 12px; margin-top: 10px; }
+.contacts__social img { width: 38px; height: 38px; object-fit: contain; }
