@@ -805,73 +805,133 @@
     background: var(--color-accent);
   }
   
-  /* Редагування замовлення в модалці */
-  .modal__dialog--order {
-    padding: 28px 24px;
-  }
-  
-  .order-item {
-    position: relative;
-    display: flex;
-    gap: 16px;
-    align-items: center;
-  }
-  
-  .order-item > img {
-    width: 90px;
-    height: 90px;
-    object-fit: contain;
-    padding: 4px;
-    border: 1px solid var(--color-border);
-    border-radius: 4px;
-  }
-  
-  .order-item__info h3 {
-    font: 600 18px var(--font-heading);
-    color: var(--co-text);
-  }
-  
-  .order-item__info small {
-    display: block;
-    margin: 2px 0 10px;
-    color: var(--co-muted);
-    font-size: 11px;
-  }
-  
-  .order-item__qty {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font: 600 18px var(--font-heading);
-  }
-  
-  .qty-btn {
-    width: 28px;
-    height: 28px;
-    padding: 0;
-    border: 0;
-    border-radius: 4px;
-    background: var(--color-primary);
-    color: #fff;
-    display: grid;
-    place-items: center;
-  }
-  
-  .order-item__delete {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 32px;
-    height: 32px;
-    border: 0;
-    background: transparent;
-    color: #999;
-    cursor: pointer;
-  }
-  
-  .order-item__delete:hover {
-    color: var(--co-error);
-  }
+/* Редагування замовлення в модалці */
+.modal__dialog--order {
+  padding: 32px 28px 24px;
+}
+
+/* Кнопка закриття модального вікна */
+.modal__close--dark {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  transition: transform .2s, background-color .2s;
+}
+
+.modal__close--dark:hover {
+  background: #17392f;
+  transform: scale(1.1);
+}
+
+.modal__close--dark svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Рядок товару в модалці */
+.order-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-right: 48px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Зображення товару */
+.order-item > img {
+  flex: none;
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  padding: 4px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: #fff;
+}
+
+/* Інформація про препарат */
+.order-item__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.order-item__info h3 {
+  font: 600 16px var(--font-heading);
+  color: var(--co-text);
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.order-item__info small {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--co-muted);
+  font: 400 11px var(--font-heading);
+}
+
+/* Лічильник кількості */
+.order-item__qty {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font: 600 16px var(--font-heading);
+  color: var(--co-text);
+}
+
+.qty-btn {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: var(--color-primary);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform .2s;
+}
+
+.qty-btn:hover {
+  transform: scale(1.08);
+}
+
+.order-item__delete {
+  position: static; 
+  flex: none;
+  width: 36px;
+  height: 36px;
+  margin-left: auto;
+  border: 0;
+  background: transparent;
+  color: #888;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: color .2s, transform .2s;
+}
+
+.order-item__delete:hover {
+  color: var(--co-error);
+  transform: scale(1.15);
+}
+
+.order-item__delete svg {
+  width: 22px;
+  height: 22px;
+}
   
   
   /* АДАПТИВНІ СТИЛІ ДЛЯ ПЛАНШЕТА (641px – 1024px) */
