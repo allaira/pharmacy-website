@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="css/pharmacies.css">
 </head>
 <body>
+  <!-- Верхня зелена смуга -->
   <div class="topbar">
     <div class="topbar__inner">
       <span>Гаряча лінія: <strong>0 (800) 50 50 50</strong></span>
@@ -20,14 +21,14 @@
 
   <header class="header">
     <div class="header__inner">
-      <a href="index.html" class="logo"><img src="img/logo.png" alt=""><span>Аптека</span></a>
-      <a href="catalog.html" class="pill"><span class="icon icon--catalog"></span>Каталог</a>
-      <form class="search">
-        <input type="search" placeholder="Пошук ліків, вітамінів та товарів...">
+      <a href="index.html" class="logo"><img src="img/logo.png" alt="Аптека"><span>Аптека</span></a>
+      <a href="catalog.html" class="pill btn-catalog"><span class="icon icon--catalog"></span>Каталог</a>
+      <form class="search" role="search">
+        <input type="search" placeholder="Пошук ліків, вітамінів та товарів..." aria-label="Пошук">
         <button class="search__btn" aria-label="Шукати"><span class="icon icon--search"></span></button>
       </form>
-      <a href="pharmacies.html" class="pill">Всі аптеки</a>
-      <nav class="header__actions">
+      <a href="pharmacies.html" class="pill btn-pharmacies">Всі аптеки</a>
+      <nav class="header__actions" aria-label="Панель користувача">
         <a href="#" class="action"><span class="action__icon"><span class="icon icon--saved"></span><span class="badge" data-count="4">4</span></span>Обране</a>
         <a href="#" class="action"><span class="action__icon"><span class="icon icon--user"></span></span>Кабінет</a>
         <a href="checkout.html" class="action"><span class="action__icon"><span class="icon icon--shop"></span><span class="badge" data-count="2">2</span></span>Кошик</a>
@@ -35,80 +36,112 @@
     </div>
   </header>
 
-  <main class="pharmacies">
-    <p class="breadcrumbs"><a href="index.html">Аптека</a> &gt; <span>Всі аптеки</span></p>
-    <h1 class="pharmacies__title">Карта аптек - <a href="#" class="city-edit">Київ<img src="img/icons/edit-green.png" alt="Змінити місто"></a></h1>
+  <main class="pharmacies container">
+    <p class="breadcrumbs"><a href="index.html">Головна</a> &gt; <span>Всі аптеки</span></p>
+    
+    <div class="pharmacies__head">
+      <h1 class="pharmacies__title">Карта аптек - <a href="#" class="city-edit">Київ<span class="icon icon--edit"></span></a></h1>
+    </div>
+
+    <!-- Приховані перемикачі режиму перегляду на мобільному (без JS) -->
+    <input type="radio" name="mobile-view" id="view-list" class="view-toggle-list" checked>
+    <input type="radio" name="mobile-view" id="view-map" class="view-toggle-map">
 
     <section class="finder">
+      <!-- Панель пошуку і списку -->
       <aside class="finder__panel">
         <form class="finder__search">
-          <img class="finder__lens" src="img/icons/search-grey.png" alt="">
-          <input type="search" placeholder="Введіть адресу або станцію метро">
-          <button type="button" class="finder__locate" aria-label="Моє розташування"><img src="img/icons/locate.png" alt=""></button>
+          <span class="finder__lens icon icon--search"></span>
+          <input type="search" placeholder="Введіть адресу або станцію метро" aria-label="Пошук аптеки">
+          <button type="button" class="finder__locate" aria-label="Моє розташування"><span class="icon icon--locate"></span></button>
         </form>
+
         <div class="finder__chips">
-          <button class="chip">Відкрито зараз</button>
-          <button class="chip">Є генератор</button>
+          <button type="button" class="chip">Відкрито зараз</button>
+          <button type="button" class="chip">Є генератор</button>
         </div>
-        <div class="finder__count"><span>836 аптек</span><button class="sort">За замовчуванням<img src="img/icons/chevron-down.png" alt=""></button></div>
+
+        <!-- Кнопки-перемикачі «Список / На карті» (видимі тільки на телефоні) -->
+        <div class="mobile-switch">
+          <label for="view-list" class="switch-btn switch-btn--list">Список</label>
+          <label for="view-map" class="switch-btn switch-btn--map">На карті</label>
+        </div>
+
+        <div class="finder__count">
+          <span>836 аптек</span>
+          <button type="button" class="sort">За замовчуванням <span class="sort-arr">⌵</span></button>
+        </div>
+
+        <!-- Список аптек -->
         <div class="finder__list">
           <article class="ph-card">
             <div class="ph-card__name"><img src="img/logo.png" alt=""><h3>Аптека</h3></div>
             <p class="ph-card__addr">вул. Хрещатик, 24, м. Київ</p>
             <div class="ph-card__bottom">
               <span class="ph-card__hours">Пн-Нд 08:00 – 22:00</span>
-              <a href="#" class="ph-card__map"><img src="img/icons/pin.png" alt="">На карті</a>
+              <label for="view-map" class="ph-card__map"><span class="icon icon--pin"></span>На карті</label>
             </div>
+            <span class="ph-card__gen"><span class="icon icon--gen"></span>Є генератор</span>
           </article>
+
           <article class="ph-card">
             <div class="ph-card__name"><img src="img/logo.png" alt=""><h3>Аптека</h3></div>
             <p class="ph-card__addr">просп. Академіка Глушкова, 13Б, м. Київ</p>
             <div class="ph-card__bottom">
               <span class="ph-card__hours">Цілодобово (24/7)</span>
-              <a href="#" class="ph-card__map"><img src="img/icons/pin.png" alt="">На карті</a>
+              <label for="view-map" class="ph-card__map"><span class="icon icon--pin"></span>На карті</label>
             </div>
           </article>
+
           <article class="ph-card">
             <div class="ph-card__name"><img src="img/logo.png" alt=""><h3>Аптека</h3></div>
             <p class="ph-card__addr">вул. Олександра Мишуги, 4, м. Київ</p>
             <div class="ph-card__bottom">
               <span class="ph-card__hours">Пн-Пт 08:00 – 21:00<br>Сб-Нд 09:00 – 20:00</span>
-              <a href="#" class="ph-card__map"><img src="img/icons/pin.png" alt="">На карті</a>
+              <label for="view-map" class="ph-card__map"><span class="icon icon--pin"></span>На карті</label>
             </div>
           </article>
+
           <article class="ph-card">
             <div class="ph-card__name"><img src="img/logo.png" alt=""><h3>Аптека</h3></div>
             <p class="ph-card__addr">вул. Нижній Вал, 15, м. Київ</p>
             <div class="ph-card__bottom">
               <span class="ph-card__hours">Пн-Нд 09:00 – 21:00</span>
-              <a href="#" class="ph-card__map"><img src="img/icons/pin.png" alt="">На карті</a>
+              <label for="view-map" class="ph-card__map"><span class="icon icon--pin"></span>На карті</label>
             </div>
           </article>
+
           <article class="ph-card">
             <div class="ph-card__name"><img src="img/logo.png" alt=""><h3>Аптека</h3></div>
             <p class="ph-card__addr">просп. Оболонський, 1Б (ТЦ Dream), м. Київ</p>
             <div class="ph-card__bottom">
               <span class="ph-card__hours">Пн-Нд 09:00 – 21:30</span>
-              <a href="#" class="ph-card__map"><img src="img/icons/pin.png" alt="">На карті</a>
-            </div><span class="ph-card__gen"><img src="img/icons/generator.png" alt="">Є генератор</span>
+              <label for="view-map" class="ph-card__map"><span class="icon icon--pin"></span>На карті</label>
+            </div>
           </article>
+
           <article class="ph-card">
             <div class="ph-card__name"><img src="img/logo.png" alt=""><h3>Аптека</h3></div>
             <p class="ph-card__addr">просп. Повітряних Сил, 50, м. Київ</p>
             <div class="ph-card__bottom">
-              <span class="ph-card__hours">Пн-Нд 08:00 – 22:00</span>
-              <a href="#" class="ph-card__map"><img src="img/icons/pin.png" alt="">На карті</a>
+              <span class="ph-card__hours">Пн-Нд 07:30 – 21:00</span>
+              <label for="view-map" class="ph-card__map"><span class="icon icon--pin"></span>На карті</label>
             </div>
           </article>
         </div>
       </aside>
 
-      <div class="map">
+      <!-- Блок інтерактивної карти -->
+      <div class="map" id="map-container">
         <img class="map__img" src="img/map.png" alt="Карта аптек">
-        <div class="map__zoom"><button aria-label="Збільшити">+</button><button aria-label="Зменшити">−</button></div>
+        <div class="map__zoom">
+          <button type="button" aria-label="Збільшити">+</button>
+          <button type="button" aria-label="Зменшити">−</button>
+        </div>
       </div>
     </section>
 
+    <!-- Секція «Контакти» під картою -->
     <section class="contacts">
       <h2>Контакти</h2>
       <div class="contacts__grid">
@@ -126,18 +159,18 @@
           <h3>Месенджери</h3>
           <p>Зв'язатися в месенджерах</p>
           <div class="contacts__social">
-            <a href="#"><img src="img/social/facebook.png" alt="Facebook"></a>
-            <a href="#"><img src="img/social/telegram.png" alt="Telegram"></a>
-            <a href="#"><img src="img/social/youtube.png" alt="YouTube"></a>
-            <a href="#"><img src="img/social/instagram.png" alt="Instagram"></a>
+            <a href="#" aria-label="Facebook"><img src="img/facebook.png" alt="Facebook"></a>
+            <a href="#" aria-label="Telegram"><img src="img/telegram.png" alt="Telegram"></a>
+            <a href="#" aria-label="YouTube"><img src="img/youtube.png" alt="YouTube"></a>
+            <a href="#" aria-label="Instagram"><img src="img/instagram.png" alt="Instagram"></a>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Футер -->
-  <footer class="footer">
+   <!-- Футер -->
+   <footer class="footer">
     <div class="container">
       <div class="footer__top">
         <div class="footer__pay">
@@ -207,5 +240,25 @@
       </div>
     </div>
   </footer>
+
+  <!-- Бежеве мобільне меню -->
+  <nav class="mobile-nav" aria-label="Мобільна навігація">
+    <a href="index.html" class="mobile-nav__item"><span class="icon icon--home"></span><span>Головна</span></a>
+    <a href="catalog.html" class="mobile-nav__item"><span class="icon icon--catalog"></span><span>Каталог</span></a>
+    <a href="pharmacies.html" class="mobile-nav__item is-active"><span class="icon icon--location"></span><span>Всі аптеки</span></a>
+    <a href="#" class="mobile-nav__item"><span class="icon icon--saved"></span><span>Обране</span></a>
+    <a href="checkout.html" class="mobile-nav__item"><span class="icon icon--shop"></span><span>Кошик</span></a>
+  </nav>
+
+  <script>
+    // Акордеони футера для мобільного
+    document.querySelectorAll('.footer__title').forEach(title => {
+      title.addEventListener('click', () => {
+        if (window.innerWidth <= 640) {
+          title.parentElement.classList.toggle('is-open');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
