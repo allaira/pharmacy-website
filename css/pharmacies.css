@@ -87,6 +87,7 @@
     padding: 14px;
     background: var(--ph-panel);
     border-radius: var(--radius-sm);
+    margin-bottom: 20px;
   }
   
   .finder__search {
@@ -198,6 +199,7 @@
     padding-right: 4px;
     scrollbar-width: thin;
     scrollbar-color: var(--color-primary) transparent;
+    margin-bottom: 20px;
   }
   
   .ph-card {
@@ -272,101 +274,20 @@
     overflow: hidden;
     background: #E5E3D8;
     border-radius: var(--radius-sm);
+    margin-bottom: 20px;
   }
   
-  .map__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .custom-pharmacy-marker {
+    background: transparent !important;
+    border: none !important;
   }
-  
-  .map__zoom {
-    position: absolute;
-    top: 14px;
-    left: 14px;
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-    border-radius: 4px;
-    box-shadow: 0 1px 4px rgba(0,0,0,.25);
-    overflow: hidden;
+
+  /* Підсвічування натиснутих фільтрів "Відкрито зараз" та "Є генератор" */
+  .chip.active {
+    background-color: var(--color-primary, #084C42) !important;
+    color: #ffffff !important;
+    border-color: var(--color-primary, #084C42) !important;
   }
-  
-  .map__zoom button {
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    border: 0;
-    background: none;
-    font: 400 20px var(--font-body);
-    color: #555;
-    cursor: pointer;
-  }
-  
-  .map__zoom button + button {
-    border-top: 1px solid #eee;
-  }
-  
-  /* Секція контактів (десктоп) */
-  .contacts {
-    margin-top: 36px;
-  }
-  
-  .contacts h2 {
-    margin-bottom: 12px;
-    font: 700 22px var(--font-heading);
-    color: var(--color-text);
-  }
-  
-  .contacts__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border: 1px solid var(--ph-border);
-    background: var(--ph-card);
-    border-radius: var(--radius-sm);
-  }
-  
-  .contacts__cell {
-    padding: 20px 24px;
-    text-align: center;
-    font: 400 13px/1.45 var(--font-heading);
-    color: #4a4a40;
-  }
-  
-  .contacts__cell + .contacts__cell {
-    border-left: 1px solid var(--ph-border);
-  }
-  
-  .contacts__cell h3 {
-    margin-bottom: 8px;
-    font: 600 20px var(--font-heading);
-    color: var(--color-primary);
-  }
-  
-  .contacts__phone {
-    display: block;
-    margin-top: 8px;
-    font: 700 18px var(--font-heading);
-    color: var(--color-primary);
-  }
-  
-  .contacts__time {
-    margin-top: 6px;
-  }
-  
-  .contacts__social {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 10px;
-  }
-  
-  .contacts__social img {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
-  }
-  
   
   /* ==========================================================================
      АДАПТИВНІ СТИЛІ ДЛЯ ПЛАНШЕТА (641px – 1024px)
@@ -511,21 +432,4 @@
       padding: 14px 16px;
     }
   
-    /* Контакти на мобільному у стовпчик */
-    .contacts {
-      margin-top: 28px;
-    }
-  
-    .contacts__grid {
-      grid-template-columns: 1fr;
-    }
-  
-    .contacts__cell + .contacts__cell {
-      border-left: 0;
-      border-top: 1px solid var(--ph-border);
-    }
-  
-    .contacts__cell {
-      padding: 16px;
-    }
   }

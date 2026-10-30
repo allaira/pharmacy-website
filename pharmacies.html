@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/pharmacies.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
   <!-- Верхня зелена смуга -->
@@ -133,41 +134,13 @@
 
       <!-- Блок інтерактивної карти -->
       <div class="map" id="map-container">
-        <img class="map__img" src="img/map.png" alt="Карта аптек">
+        <div id="map" style="height: 480px; width: 100%; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);"></div>
         <div class="map__zoom">
           <button type="button" aria-label="Збільшити">+</button>
           <button type="button" aria-label="Зменшити">−</button>
         </div>
       </div>
     </section>
-
-    <!-- Секція «Контакти» під картою -->
-    <section class="contacts">
-      <h2>Контакти</h2>
-      <div class="contacts__grid">
-        <div class="contacts__cell">
-          <h3>Телефон</h3>
-          <p>Служба підтримки клієнтів</p>
-          <a href="tel:0800505050" class="contacts__phone">0 (800) 50 50 50</a>
-        </div>
-        <div class="contacts__cell">
-          <h3>Додатковий зв'язок</h3>
-          <p>Електронна пошта: <a href="mailto:info@apteka.ua" class="link">info@apteka.ua</a></p>
-          <p class="contacts__time">Часи роботи кол-центру: 08:00 – 22:00</p>
-        </div>
-        <div class="contacts__cell">
-          <h3>Месенджери</h3>
-          <p>Зв'язатися в месенджерах</p>
-          <div class="contacts__social">
-            <a href="#" aria-label="Facebook"><img src="img/facebook.png" alt="Facebook"></a>
-            <a href="#" aria-label="Telegram"><img src="img/telegram.png" alt="Telegram"></a>
-            <a href="#" aria-label="YouTube"><img src="img/youtube.png" alt="YouTube"></a>
-            <a href="#" aria-label="Instagram"><img src="img/instagram.png" alt="Instagram"></a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
 
    <!-- Футер -->
    <footer class="footer">
@@ -260,5 +233,11 @@
       });
     });
   </script>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Скрипт карти -->
+  <script src="js/map.js" defer></script>
+
 </body>
 </html>
