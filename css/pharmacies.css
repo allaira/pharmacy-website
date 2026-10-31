@@ -433,3 +433,18 @@
     }
   
   }
+
+  /* Обмеження шарів карти, щоб вона не виходила за свої межі */
+.map,
+#map,
+.leaflet-container {
+  z-index: 1 !important;
+}
+
+/* Підняття шапки над усіма елементами карти */
+.header,
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1100 !important; /* Значення 1100 вище за максимальні 1000 у Leaflet */
+}

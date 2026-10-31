@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         addr: "просп. Академіка Глушкова, 13Б, м. Київ",
         hours: "Цілодобово (24/7)",
         is24_7: true,
-        hasGenerator: false
+        hasGenerator: true
     },
     {
         coords: [50.3952, 30.6358],
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         addr: "просп. Повітряних Сил, 50, м. Київ",
         hours: "Пн-Нд 07:30 - 21:00",
         weekdayHours: { start: "07:30", end: "21:00" },
-        hasGenerator: false
+        hasGenerator: true
     }
     ];
 
@@ -109,9 +109,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // ініціалізація карти
     const map = L.map('map-container').setView([50.4450, 30.5200], 11);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; OpenStreetMap'
+    L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
     const markers = [];
