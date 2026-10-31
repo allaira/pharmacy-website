@@ -348,6 +348,43 @@
   .city-link:hover {
     text-decoration-style: solid;
   }
+
+  .city__search {
+    position: relative;
+  }
+
+  .city-search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    max-height: 180px;
+    overflow-y: auto;
+    z-index: 50;
+    margin-top: 4px;
+    padding: 4px 0;
+    display: none;
+  }
+
+  .city-search-results.is-active {
+    display: block;
+  }
+
+  .city-search-item {
+    padding: 8px 14px;
+    text-align: left;
+    font-size: 13px;
+    color: #333;
+    cursor: pointer;
+    transition: background .15s;
+  }
+
+  .city-search-item:hover {
+    background: #CFCAAB;
+  }
   
   .delivery__head,
   .delivery__row {
@@ -1098,3 +1135,346 @@
       font-size: 15px;
     }
   }
+  /* Прапорець без зображення */
+.field--phone {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.flag-badge {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font: 400 12px/1 var(--font-body);
+  color: var(--co-text);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.field--phone input {
+  padding-left: 88px !important;
+  font: 400 12px var(--font-body) !important;
+  height: 40px !important;
+  box-sizing: border-box;
+}
+.btn-confirm {
+  width: 100%;
+  height: 44px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: #fff;
+  font: 700 15px var(--font-heading);
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+  margin-bottom: 20px; 
+}
+
+/* Фіксація контактних даних */
+.btn-lock {
+  width: 100%;
+  height: 38px;
+  margin-top: 8px;
+  border: 0;
+  border-radius: 4px;
+  background: var(--color-primary);
+  color: #fff;
+  font: 600 13px var(--font-heading);
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.btn-lock:hover {
+  background: #17392f;
+}
+
+.contact__saved {
+  padding: 22px 24px;
+}
+
+.contact__saved h2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-link-edit {
+  background: none;
+  border: 0;
+  color: var(--color-primary);
+  text-decoration: underline;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* Динамічні поля доставки */
+.delivery-fields-box {
+  margin-top: 14px;
+  padding: 14px;
+  background: #f0f0eb;
+  border-radius: 6px;
+}
+
+.delivery-fields-box label {
+  display: block;
+  margin-bottom: 6px;
+  font: 600 12px var(--font-heading);
+  color: #444;
+}
+
+.delivery-fields-box select,
+.delivery-fields-box input {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font: 400 13px var(--font-body);
+  background: #fff;
+  outline: none;
+}
+
+/* Поля для оплати карткою */
+.card-payment-box {
+  margin-top: 14px;
+  padding: 14px;
+  background: #f4f4f4;
+  border-radius: 6px;
+  border: 1px dashed var(--color-primary);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.modal__dialog--city {
+  max-width: 440px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.modal__close--circle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #fff;
+  color: #333;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+  font-size: 16px;
+  z-index: 10;
+  text-decoration: none;
+}
+
+.city__top {
+  background: #CFCAAB;
+  padding: 24px 20px 16px;
+  text-align: center;
+}
+
+.city__top label {
+  font: 700 16px var(--font-heading);
+  color: #1F4D3F;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.city__search {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.city__search input {
+  width: 100%;
+  height: 42px;
+  padding: 0 40px 0 14px;
+  border-radius: 8px;
+  border: 0;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.city__search button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.city__top p {
+  font-size: 11px;
+  line-height: 1.35;
+  color: #1F4D3F;
+  margin: 0;
+}
+
+.city__popular {
+  padding: 16px 20px 24px;
+  text-align: center;
+}
+
+.city__popular h3 {
+  font: 600 14px var(--font-heading);
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.city__chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.city-chip {
+  padding: 6px 14px;
+  border: 0;
+  border-radius: 6px;
+  background: #E5E5E5;
+  font: 500 13px var(--font-heading);
+  color: #333;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.city-chip:hover {
+  background: #CFCAAB;
+}
+
+
+.modal__dialog--order-figma {
+  max-width: 440px;
+  border-radius: 16px;
+  padding: 44px 20px 20px !important; /* Відступ зверху для хрестика */
+  background: #fff;
+  position: relative;
+  overflow: visible !important;
+}
+
+.modal__close--dark-green {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #1F4D3F;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.modal__close--dark-green:hover {
+  background: #17392f;
+  transform: scale(1.08);
+}
+
+.figma-cart-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 12px;
+}
+
+.figma-cart-card__img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  padding: 4px;
+  flex: none;
+}
+
+.figma-cart-card__body {
+  flex: 1;
+}
+
+.figma-cart-card__title {
+  font: 700 15px/1.3 var(--font-heading);
+  color: #222;
+  margin: 0 0 4px;
+  padding-right: 36px;
+}
+
+.figma-cart-card__art {
+  font: 400 11px var(--font-body);
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.figma-cart-card__delete {
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  margin-left: auto;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #1F4D3F;
+  border: 0;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  flex: none;
+}
+
+.figma-qty-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.figma-qty-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  background: #1F4D3F;
+  color: #fff;
+  border: 0;
+  font: 700 16px var(--font-heading);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.figma-qty-val {
+  font: 700 15px var(--font-heading);
+  color: #222;
+}
+
+.check {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 4px !important;
+  margin-bottom: 4px !important;
+  font: 400 10.5px/1.35 var(--font-heading);
+  color: var(--co-text);
+  cursor: pointer;
+}

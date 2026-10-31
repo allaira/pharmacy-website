@@ -3,36 +3,287 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Оформлення замовлення</title>
+  <title>Оформлення замовлення — Аптека</title>
   <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/grid.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/order.css">
 </head>
 <body>
 
-  <header style="background: var(--color-surface); border-bottom: 1px solid var(--color-border);">
-    <div class="container header">
-      <div style="font-weight: bold; font-size: 20px; color: var(--color-primary);">НАЗВА АПТЕКИ</div>
-      <nav class="nav-links">
-        <a href="main.html">Головна</a>
-        <a href="product.html">Препарат</a>
-        <a href="order.html">Замовлення</a>
-        <a href="contacts.html">Контакти</a>
-      </nav>
+  <!-- Шапка -->
+  <header class="header header--simple">
+    <div class="header__inner container">
+      <a href="index.html" class="logo">
+        <img src="img/logo.png" alt="Аптека">
+        <span>Аптека</span>
+      </a>
     </div>
   </header>
 
-  <main class="container" style="padding: 40px 16px;">
-    <div style="background-color: var(--color-dusty-beige); padding: 24px; border-radius: var(--radius); margin-bottom: 24px;">
-      <h1>Оформлення замовлення та бронювання</h1>
-      <p>Форма введення даних покупця та вибір аптеки для самовивозу</p>
+  <main class="container order-page">
+    <!-- Кнопка назад та заголовок -->
+    <div class="order-header">
+      <a href="product.html" class="back-link" aria-label="Назад">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </a>
+      <h1>Оформлення замовлення</h1>
     </div>
+
+    <form id="order-form" class="order-layout">
+      
+      <!-- ЛІВА КОЛОНКА -->
+      <div class="order-main">
+
+        <!-- 1. Контактна інформація -->
+        <section class="order-section">
+          <h2 class="order-section__title">Контактна інформація</h2>
+          <div class="contacts-grid">
+            <div class="contacts-inputs">
+              <div class="input-phone">
+                <span class="flag-icon">🇺🇦</span>
+                <input type="tel" id="user-phone" placeholder="Ваш телефон" required pattern="\+?[0-9\s\-\(\)]{10,15}">
+              </div>
+              <div class="input-row">
+                <input type="text" id="user-firstname" placeholder="Ім'я" required>
+                <input type="text" id="user-lastname" placeholder="Прізвище" required>
+              </div>
+              <input type="email" id="user-email" placeholder="Ваш e-mail (необов'язково)">
+            </div>
+
+            <div class="auth-box">
+              <p>Або авторизуйтесь за допомогою кнопки, щоб ми автоматично заповнили ваші дані</p>
+              <a href="#" class="btn-auth"><span class="icon icon--user"></span> Увійти</a>
+              <div class="auth-divider"><span>АБО</span></div>
+              <p class="auth-note">Немає облікового запису? <a href="#">Зареєструйтесь</a> для відслідковування замовлень в особистому кабінеті і автоматичного заповнення даних</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. Спосіб доставки -->
+        <section class="order-section">
+          <div class="city-selector">
+            <span>Ваше місто</span>
+            <select id="user-city" class="city-select">
+              <option value="kyiv">Київ</option>
+              <option value="zhytomyr" selected>Будь ласка, оберіть ваше місто</option>
+              <option value="lviv">Львів</option>
+              <option value="odesa">Одеса</option>
+              <option value="kharkiv">Харків</option>
+              <option value="dnipro">Дніпро</option>
+            </select>
+          </div>
+
+          <div class="delivery-table">
+            <div class="delivery-table__head">
+              <span>СПОСІБ ДОСТАВКИ</span>
+              <span>ОРІЄНТОВНА ДАТА</span>
+              <span>ВАРТІСТЬ</span>
+            </div>
+
+            <!-- Варіанти доставки -->
+            <label class="delivery-option">
+              <input type="radio" name="delivery" value="pickup" data-price="0" checked>
+              <span class="delivery-option__radio"></span>
+              <span class="delivery-option__icon pickup-icon">✚</span>
+              <span class="delivery-option__name">Самовивіз з аптеки</span>
+              <span class="delivery-option__date"></span>
+              <span class="delivery-option__price">Безкоштовно</span>
+            </label>
+
+            <label class="delivery-option">
+              <input type="radio" name="delivery" value="ukrposhta" data-price="50">
+              <span class="delivery-option__radio"></span>
+              <span class="delivery-option__icon ukrposhta-icon">📍</span>
+              <span class="delivery-option__name">Укрпошта відділення</span>
+              <span class="delivery-option__date"></span>
+              <span class="delivery-option__price">Від 50 грн</span>
+            </label>
+
+            <label class="delivery-option">
+              <input type="radio" name="delivery" value="np-branch" data-price="90">
+              <span class="delivery-option__radio"></span>
+              <span class="delivery-option__icon np-icon">❖</span>
+              <span class="delivery-option__name">Нова Пошта відділення</span>
+              <span class="delivery-option__date"></span>
+              <span class="delivery-option__price">90 грн</span>
+            </label>
+
+            <label class="delivery-option">
+              <input type="radio" name="delivery" value="np-postomat" data-price="90">
+              <span class="delivery-option__radio"></span>
+              <span class="delivery-option__icon np-icon">❖</span>
+              <span class="delivery-option__name">Нова Пошта поштомат</span>
+              <span class="delivery-option__date"></span>
+              <span class="delivery-option__price">90 грн</span>
+            </label>
+
+            <label class="delivery-option">
+              <input type="radio" name="delivery" value="np-courier" data-price="150">
+              <span class="delivery-option__radio"></span>
+              <span class="delivery-option__icon np-icon">❖</span>
+              <span class="delivery-option__name">Нова Пошта кур'єр</span>
+              <span class="delivery-option__date"></span>
+              <span class="delivery-option__price">Від 150 грн</span>
+            </label>
+          </div>
+
+          <!-- Блок допомоги -->
+          <div class="help-box">
+            <p>Необхідна допомога з оформленням замовлення?</p>
+            <a href="tel:0800505050" class="help-phone">📞 0 (800) 50 50 50</a>
+            <small>Зав'яжіться з оператором по телефону</small>
+          </div>
+        </section>
+
+        <!-- 3. Спосіб оплати -->
+        <section class="order-section">
+          <h2 class="order-section__title">Оберіть спосіб оплати</h2>
+          <div class="payment-grid">
+            <label class="payment-card">
+              <input type="radio" name="payment" value="cash" checked>
+              <span class="payment-card__radio"></span>
+              <span class="payment-card__text">Оплата при отриманні</span>
+            </label>
+
+            <label class="payment-card">
+              <input type="radio" name="payment" value="card">
+              <span class="payment-card__radio"></span>
+              <span class="payment-card__text">Оплата карткою онлайн</span>
+            </label>
+
+            <label class="payment-card">
+              <input type="radio" name="payment" value="gpay">
+              <span class="payment-card__radio"></span>
+              <span class="payment-card__text">Apple Pay / Google Pay</span>
+            </label>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ПРАВА КОЛОНКА (Сайдбар) -->
+      <aside class="order-sidebar">
+        <div class="sidebar-box">
+          <div class="sidebar-box__head">
+            <h2>Ваше замовлення</h2>
+            <button type="button" class="btn-edit" aria-label="Редагувати">✏️</button>
+          </div>
+
+          <div class="summary-lines">
+            <div class="summary-line">
+              <span>Товари:</span>
+              <strong id="summary-items-price">349,00 ₴</strong>
+            </div>
+            <div class="summary-line">
+              <span>Доставка:</span>
+              <strong id="summary-delivery-price">Ще не розрахована</strong>
+            </div>
+          </div>
+
+          <div class="summary-total">
+            <span>Підсумок:</span>
+            <strong id="summary-total-price">349,00 ₴</strong>
+          </div>
+
+          <!-- Промокод -->
+          <div class="promo-block">
+            <button type="button" id="toggle-promo" class="btn-text">Використати промокод</button>
+            <div id="promo-input-box" class="promo-input-box hidden">
+              <input type="text" id="promo-code" placeholder="Введіть промокод">
+              <button type="button" id="apply-promo">ОК</button>
+            </div>
+          </div>
+
+          <!-- Кнопка підтвердження -->
+          <button type="submit" class="btn-submit-order">Підтвердити замовлення</button>
+
+          <!-- Чекбокси згоди -->
+          <div class="terms-checkboxes">
+            <label class="custom-checkbox">
+              <input type="checkbox" required checked>
+              <span class="checkbox-box"></span>
+              <span class="checkbox-text">Підтверджуючи замовлення, я приймаю <a href="#">умови угоди використання сайту</a> і даю згоду на обробку моїх персональних даних</span>
+            </label>
+
+            <label class="custom-checkbox">
+              <input type="checkbox" id="no-call">
+              <span class="checkbox-box"></span>
+              <span class="checkbox-text">Не передзвонювати мені</span>
+            </label>
+          </div>
+
+          <!-- Перелік товарів -->
+          <div class="order-items-preview">
+            <div id="order-items-list" class="order-items-list">
+              <!-- Динамічно з JS -->
+            </div>
+
+            <button type="button" id="toggle-items-list" class="btn-text btn-text--toggle">Згорнути склад замовлення</button>
+          </div>
+
+          <!-- Коментар до замовлення -->
+          <div class="order-comment-block">
+            <button type="button" id="toggle-comment" class="btn-text btn-text--comment">💬 Додати коментар</button>
+            <textarea id="order-comment" class="comment-textarea hidden" placeholder="Ваш коментар до замовлення..." rows="3"></textarea>
+          </div>
+
+        </div>
+      </aside>
+
+    </form>
   </main>
 
-  <footer style="background: var(--color-surface); border-top: 1px solid var(--color-border); padding: 20px 0; margin-top: 40px;">
+  <!-- Футер -->
+  <footer class="footer">
     <div class="container">
-      <p>&copy; 2026 Аптека</p>
+      <div class="footer__top">
+        <div class="footer__pay">
+          <span class="footer__label">Ми приймаємо:</span>
+          <img src="img/mastercard.png" alt="Mastercard">
+          <img src="img/visa.png" alt="Visa">
+          <img src="img/apple-pay.png" alt="Apple Pay">
+          <img src="img/google-pay.png" alt="Google Pay">
+        </div>
+        <div class="footer__social">
+          <span class="footer__label">Слідкуйте за нами:</span>
+          <a href="#" aria-label="Facebook"><img src="img/facebook.png" alt="Facebook"></a>
+          <a href="#" aria-label="Telegram"><img src="img/telegram.png" alt="Telegram"></a>
+          <a href="#" aria-label="YouTube"><img src="img/youtube.png" alt="YouTube"></a>
+          <a href="#" aria-label="Instagram"><img src="img/instagram.png" alt="Instagram"></a>
+        </div>
+      </div>
+      <hr class="footer__line">
+      <div class="footer__cols">
+        <div class="footer__col">
+          <h4 class="footer__title">Покупцям</h4>
+          <ul class="footer__list">
+            <li><a href="#">Про компанію</a></li>
+            <li><a href="#">Акції</a></li>
+            <li><a href="#">Оплата і доставка</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__title">Інформація</h4>
+          <ul class="footer__list">
+            <li><a href="#">Всі аптеки</a></li>
+            <li><a href="#">Політика конфіденційності</a></li>
+          </ul>
+        </div>
+        <div class="footer__contacts">
+          <h4>Контакти</h4>
+          <p class="footer__phone">0 800 50 50 50</p>
+          <p>м. Київ, просп. Академіка Глушкова, 4г</p>
+        </div>
+      </div>
+      <div class="footer__warning">
+        <span>САМОЛІКУВАННЯ МОЖЕ БУТИ ШКІДЛИВИМ ДЛЯ ВАШОГО ЗДОРОВ'Я</span>
+      </div>
     </div>
   </footer>
 
+  <script src="js/main.js" defer></script>
+  <script src="js/order.js" defer></script>
 </body>
 </html>
