@@ -61,6 +61,7 @@
 }
 
 .pill {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -69,16 +70,51 @@
   padding: 0 16px;
   line-height: 1;
   border-radius: var(--radius-pill);
-  background: var(--color-primary);
-  color: #fff;
+  border: none;
+  
+  background: linear-gradient(180deg, #2A6655 0%, var(--color-primary) 55%, #123328 100%);
+  color: #ffffff;
   font: 700 14px var(--font-heading);
-  box-shadow: var(--shadow-pill);
   white-space: nowrap;
-  transition: transform .2s;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+
+  box-shadow: 
+    0 5px 12px rgba(31, 77, 63, 0.35),
+    0 2px 4px rgba(0, 0, 0, 0.15),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  overflow: hidden;
+}
+
+.pill::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 4px;
+  right: 4px;
+  border-radius: var(--radius-pill);
+  box-shadow: 
+    inset 0 3px 5px rgba(0, 0, 0, 0.45),
+    inset 0 -1px 3px rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  pointer-events: none;
 }
 
 .pill:hover {
-  transform: scale(1.04);
+  transform: translateY(-1.5px);
+  box-shadow: 
+    0 8px 18px rgba(31, 77, 63, 0.45),
+    0 3px 6px rgba(0, 0, 0, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.pill:active {
+  transform: translateY(1px);
+  box-shadow: 
+    0 2px 5px rgba(31, 77, 63, 0.2),
+    inset 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .pill .icon {
@@ -113,10 +149,27 @@
   border: 0;
   border-radius: 50%;
   color: #fff;
-  background: var(--color-primary);
+  background: linear-gradient(180deg, #2A6655 0%, var(--color-primary) 100%);
+  box-shadow: 
+    0 3px 7px rgba(0, 0, 0, 0.18),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4);
   display: grid;
   place-items: center;
   z-index: 2;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.search__btn:hover {
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: 
+    0 5px 10px rgba(0, 0, 0, 0.22),
+    inset 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.search__btn:active {
+  transform: translateY(-50%) scale(0.95);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.35);
 }
 
 .search__btn .icon {
@@ -248,27 +301,48 @@
   width: 32px;
   height: 32px;
   padding: 0;
-  border: 0;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
   border-radius: var(--radius-sm);
-  background: #E8E8E8;
+  
+  background: linear-gradient(180deg, #F7F7F7 0%, #E8E8E8 65%, #DCDBDC 100%) !important;
   color: #7A7A7A;
   display: grid;
   place-items: center;
-  transition: background .2s, color .2s;
+  cursor: pointer;
+  
+  box-shadow: 
+    0 3px 6px rgba(0, 0, 0, 0.08),
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9) !important;
+    
+  transition: all 0.18s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 
 .arrow .icon {
   --icon-size: 16px;
 }
-
 .arrow:hover:not(:disabled) {
-  background: #DCDCDC;
+  background: linear-gradient(180deg, #FFFFFF 0%, #E2E2E2 65%, #D5D5D5 100%) !important;
   color: var(--color-primary);
+  transform: translateY(-1px);
+  box-shadow: 
+    0 5px 10px rgba(0, 0, 0, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 1) !important;
+}
+
+.arrow:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.08),
+    inset 0 2px 4px rgba(0, 0, 0, 0.18) !important;
 }
 
 .arrow:disabled {
   opacity: .35;
   cursor: default;
+  box-shadow: none !important;
+  transform: none !important;
+  background: #E8E8E8 !important;
 }
 
 /* Картка товару */
@@ -282,6 +356,10 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   transition: transform .2s, box-shadow .2s;
+  box-shadow: 
+    0 12px 30px rgba(8, 76, 66, 0.08),
+    inset 0 2px 4px rgba(255, 255, 255, 0.9),
+    inset 0 -3px 6px rgba(180, 165, 140, 0.3);
 }
 
 .product-card:hover {
@@ -346,7 +424,7 @@
 .product-card__title {
   margin-top: 10px;
   min-height: 34px;
-  font: 400 12px/1.35 var(--font-body);
+  font: 400 14px/1.35 var(--font-body);
 }
 
 .product-card__title a {
@@ -1035,4 +1113,137 @@
   .mobile-nav__item .icon {
     --icon-size: 20px;
   }
+}
+/* ==========================================================================
+   МАКСИМАЛЬНИЙ 3D-ОБ'ЄМ ДЛЯ КНОПОК-ТАБЛЕТОК (ВИКОРИСТОВУЮЧИ ВАШІ КОЛЬОРИ)
+   ========================================================================== */
+
+/* 1. БЕЖЕВА ОБ'ЄМНА ТАБЛЕТКА (ДОДАТИ ТОВАР) — ВИКОРИСТОВУЄ #C5C1AA ТА #B3AF96 */
+.ph-card__add {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  padding: 9px 20px !important; /* Відчутно більші та об'ємніші */
+  border-radius: 999px !important;
+  border: none !important;
+  cursor: pointer !important;
+  
+  /* Насичений об'ємний градієнт з ваших кольорів */
+  background: linear-gradient(180deg, #D5D1BA 0%, var(--color-accent) 55%, var(--color-accent-dark) 100%) !important;
+  
+  /* Потужна зовнішня 3D-тінь для підняття над карткою */
+  box-shadow: 
+    0 8px 20px rgba(160, 150, 130, 0.35),
+    0 3px 6px rgba(0, 0, 0, 0.1),
+    inset 0 1px 3px rgba(255, 255, 255, 0.8) !important;
+    
+  color: var(--color-primary) !important;
+  font-family: var(--font-heading, sans-serif) !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  overflow: hidden !important;
+}
+
+/* Глибока внутрішня втиснута рамка для бежевої пігулки */
+.ph-card__add::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 4px !important;
+  bottom: 4px !important;
+  left: 5px !important;
+  right: 5px !important;
+  border-radius: 999px !important;
+  
+  box-shadow: 
+    inset 0 4px 6px rgba(130, 120, 100, 0.45),  /* Темна тінь зверху всередині */
+    inset 0 -2px 10px rgba(255, 255, 255, 0.6) !important; /* Відблиск знизу */
+    
+  border: 1px solid rgba(130, 120, 100, 0.25) !important;
+  pointer-events: none !important;
+}
+
+.ph-card__add:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 
+    0 12px 25px rgba(160, 150, 130, 0.45),
+    0 5px 10px rgba(0, 0, 0, 0.15),
+    inset 0 1px 3px rgba(255, 255, 255, 0.9) !important;
+}
+
+.ph-card__add:active {
+  transform: translateY(2px) !important;
+  box-shadow: 
+    0 3px 8px rgba(160, 150, 130, 0.25),
+    inset 0 5px 10px rgba(120, 110, 90, 0.6) !important;
+}
+
+
+/* 2. ЗЕЛЕНА ОБ'ЄМНА ТАБЛЕТКА (БАНЕР / ПІДТВЕРДЖЕННЯ) — ВИКОРИСТОВУЄ #1F4D3F */
+.btn-banner,
+.btn-confirm {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  padding: 14px 34px !important; /* Великий, солідний розмір */
+  border-radius: 999px !important;
+  border: none !important;
+  cursor: pointer !important;
+  
+  /* Глибокий об'ємний зелений градієнт */
+  background: linear-gradient(180deg, #2A6655 0%, var(--color-primary) 55%, #123328 100%) !important;
+  
+  /* Потужна зовнішня 3D-тінь */
+  box-shadow: 
+    0 12px 30px rgba(31, 77, 63, 0.4),
+    0 4px 10px rgba(0, 0, 0, 0.2),
+    inset 0 1px 3px rgba(255, 255, 255, 0.4) !important;
+    
+  color: #ffffff !important;
+  font-family: var(--font-heading, sans-serif) !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) !important;
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  overflow: hidden !important;
+}
+
+/* Глибока внутрішня втиснута рамка для зеленої пігулки */
+.btn-banner::before,
+.btn-confirm::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 4px !important;
+  bottom: 4px !important;
+  left: 5px !important;
+  right: 5px !important;
+  border-radius: 999px !important;
+  
+  box-shadow: 
+    inset 0 4px 8px rgba(0, 0, 0, 0.55),
+    inset 0 -2px 4px rgba(255, 255, 255, 0.3) !important;
+    
+  border: 1px solid rgba(0, 0, 0, 0.3) !important;
+  pointer-events: none !important;
+}
+
+.btn-banner:hover,
+.btn-confirm:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 
+    0 16px 36px rgba(31, 77, 63, 0.5),
+    0 6px 14px rgba(0, 0, 0, 0.25),
+    inset 0 1px 3px rgba(255, 255, 255, 0.5) !important;
+}
+
+.btn-banner:active,
+.btn-confirm:active {
+  transform: translateY(2px) !important;
+  box-shadow: 
+    0 4px 10px rgba(31, 77, 63, 0.25),
+    inset 0 6px 12px rgba(0, 0, 0, 0.65) !important;
 }

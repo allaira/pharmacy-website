@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ].filter(item => item.el);
 
   function highlightSingleTabOnScroll() {
-    const scrollPos = window.scrollY + 150;
+    const scrollPos = window.scrollY + 140;
     let currentId = 'all';
 
     sections.forEach(item => {
@@ -124,9 +124,17 @@ document.addEventListener('DOMContentLoaded', () => {
   highlightSingleTabOnScroll();
 
   subnavLinks.forEach(link => {
-    link.addEventListener('click', function () {
-      subnavLinks.forEach(l => l.classList.remove('is-active'));
-      this.classList.add('is-active');
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').replace('#', '');
+      const targetEl = sections.find(s => s.id === targetId)?.el;
+
+      if (targetEl) {
+        const offsetTop = targetEl.offsetTop - 120;
+        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+      }
+
+      history.pushState(null, null, window.location.pathname);
     });
   });
 
