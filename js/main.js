@@ -1,3 +1,5 @@
+// Чекаємо, поки повністю завантажиться DOM-дерево, і лише тоді виконуємо весь 
+// код всередині цього колбека
 document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   // 1. ДАНІ ТОВАРІВ
@@ -16,14 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. СТАН З LOCALSTORAGE ТА БЕЙДЖІ
   // ==========================================
   function getCart() {
-    return JSON.parse(localStorage.getItem('pharmacy_cart') || '[]');
+    return JSON.parse(localStorage.getItem('pharmacy_cart') || '[]'); //ключ кошика для сховища
   }
 
   function getFavorites() {
     return JSON.parse(localStorage.getItem('pharmacy_favs') || '[]');
   }
 
-  function updateHeaderBadges() {
+  function updateHeaderBadges() { //синхронізує лічильники
     const cart = getCart();
     const favs = getFavorites();
 
@@ -34,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Обране (перша кнопка в панелі)
     if (actionLinks[0]) {
-      const favBadge = actionLinks[0].querySelector('.badge');
+      const favBadge = actionLinks[0].querySelector('.badge'); // знаходимо в ній елемент-бейдж (лічильник)
       if (favBadge) {
         favBadge.textContent = favCount;
         favBadge.style.display = favCount > 0 ? 'grid' : 'none';
@@ -51,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  updateHeaderBadges();
+  updateHeaderBadges(); // при завантаженні сторінки 
 
   // ==========================================
   // 3. ОБРОБКА КАРТОК ТОВАРІВ
@@ -59,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const cards = document.querySelectorAll('.product-card');
 
   cards.forEach((card, index) => {
-    const addBtn = card.querySelector('.btn-cart');
+    const addBtn = card.querySelector('.btn-cart, .ph-card__add');
     const favCheckbox = card.querySelector('.save input');
 
     const titleEl = card.querySelector('.product-card__title');
@@ -68,15 +70,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const product = {
       id: index + 1,
       name: titleEl ? titleEl.textContent.trim() : `Товар ${index + 1}`,
+      //прибираємо всі нецифрові символи (крім крапки)
       price: priceEl ? parseFloat(priceEl.textContent.replace(',', '.').replace(/[^\d.]/g, '')) : 100
     };
 
     // Чекбокс Обраного
     if (favCheckbox) {
-      const favs = getFavorites();
+      const favs = getFavorites(); // читаємо поточний список обраного
       favCheckbox.checked = favs.includes(product.id);
 
-      favCheckbox.addEventListener('change', (e) => {
+      favCheckbox.addEventListener('change', (e) => { //слухач зміни стану
         let favs = getFavorites();
         if (e.target.checked) {
           if (!favs.includes(product.id)) favs.push(product.id);
@@ -91,8 +94,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Кнопка Додати товар
     if (addBtn) {
       addBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
+        e.preventDefault(); // Скасовує стандартну дію браузера (перехід за посиланням, відправку форми)
+        e.stopPropagation(); // Зупиняє спливання події до батьківських елементів
 
         let cart = getCart();
         const existingIndex = cart.findIndex(item => item.id === product.id);
@@ -100,13 +103,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (existingIndex > -1) {
           cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
         } else {
-          cart.push({ ...product, quantity: 1 });
+          //додаємо копію об'єкта product з quantity = 1
+          cart.push({ ...product, quantity: 1 }); 
         }
 
         localStorage.setItem('pharmacy_cart', JSON.stringify(cart));
         updateHeaderBadges();
 
-        const originalHTML = addBtn.innerHTML;
+        const originalHTML = addBtn.innerHTML; // початковий штмл кнопки, щоб відновити потім
         addBtn.innerHTML = '<span class="icon icon--shop"></span>Додано ✓';
         addBtn.style.backgroundColor = '#1F4D3F';
         addBtn.style.color = '#FFFFFF';
@@ -127,6 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.querySelector('.search input');
 
   if (searchForm && searchInput) {
+    //новий <div> для випадаючого списку результатів
     const dropdown = document.createElement('div');
     dropdown.className = 'search-dropdown';
     dropdown.style.cssText = `
@@ -146,8 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
 
     searchForm.appendChild(dropdown);
-
-    searchInput.addEventListener('input', (e) => {
+    // слухач введення тексту в полі пошуку
+    searchInput.addEventListener('input', (e) => { 
       const query = e.target.value.toLowerCase().trim();
 
       if (query.length < 2) {
@@ -155,6 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      //фільтрація товарів
       const matches = productsData.filter(item => item.name.toLowerCase().includes(query));
 
       if (matches.length > 0) {
@@ -165,6 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         `).join('');
 
+        // показуємо випадаючий список
         dropdown.style.display = 'block';
 
         dropdown.querySelectorAll('.search-item').forEach(el => {
