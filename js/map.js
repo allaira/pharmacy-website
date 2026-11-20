@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Динамічний розрахунок чи відкрита аптека зараз
     function checkIsOpen(ph) {
-    if (ph.is24_7) return true;
+    if (ph.is24_7) return true; // Якщо аптека цілодобова — одразу true, розрахунок не потрібен
 
     const now = new Date();
     const day = now.getDay(); // 0 - Неділя, 1-5 - Пн-Пт, 6 - Субота
@@ -15,12 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!schedule) return false;
 
+     // "08:00" - ["08","00"] - [8, 0] (година і хвилини відкриття)
     const [startH, startM] = schedule.start.split(':').map(Number);
     const [endH, endM] = schedule.end.split(':').map(Number);
 
     const startMins = startH * 60 + startM;
     const endMins = endH * 60 + endM;
-
+    
+    // Відкрито, якщо зараз між відкриттям і закриттям
     return currentMins >= startMins && currentMins < endMins;
     }
 
@@ -44,8 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
         </svg>
     `,
     iconSize: [36, 46],
-    iconAnchor: [18, 46],
-    popupAnchor: [0, -44]
+    iconAnchor: [18, 46], // вістря краплі вказує на координату
+    popupAnchor: [0, -44] //де з'являється
     });
 
     // Масив з точними прапорцями генераторів з твого HTML
@@ -103,14 +105,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ВираховуємоisOpen для кожної аптеки
     pharmacies.forEach(ph => {
-    ph.isOpen = checkIsOpen(ph);
+    // Додаємо кожній властивість isOpen (true/false) на основі поточного часу 
+    ph.isOpen = checkIsOpen(ph); 
     });
 
     // ініціалізація карти
     const map = L.map('map-container').setView([50.4450, 30.5200], 11);
 
+    // додавання зображення карти
     L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
         maxZoom: 19,
+        // підпис-посилання в кутку карти
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
@@ -134,6 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
     markers.push(marker);
     });
 
+    // Радіо-кнопка перемикання на режим "Карта" (мобільний)
     const viewMapRadio = document.getElementById('view-map');
     if (viewMapRadio) {
     viewMapRadio.addEventListener('change', () => {
@@ -172,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     });
 
-    // Пошук та фільтри під твій точний HTML
+    // Пошук та фільтри під точний HTML
     const searchInput = document.querySelector('.finder__search input');
     const chips = document.querySelectorAll('.finder__chips .chip');
     const filterOpenBtn = chips[0];
@@ -182,6 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let filterOpenOnly = false;
     let filterGenOnly = false;
 
+    // Функція перерахунку видимості аптек (картки + маркери)
     function updatePharmaciesView() {
     const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
     let visibleCount = 0;
@@ -213,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     }
 
-    if (searchInput) {
+    if (searchInput) { // Якщо поле пошуку існує
     searchInput.addEventListener('input', updatePharmaciesView);
     }
 

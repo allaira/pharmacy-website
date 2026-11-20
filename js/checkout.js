@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function getCart() {
     const raw = JSON.parse(localStorage.getItem('pharmacy_cart') || '[]');
     if (raw.length === 0) {
+        // Повертаємо тестовий товар за замовчуванням
         return [{ id: 1, name: "Нурофєн експрес форте, капсули м'які по 400 мг, 20 шт", price: 349.00, quantity: 1, art: "184278" }];
     }
 
@@ -20,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    return Array.from(map.values());
+    return Array.from(map.values());  // Перетворюємо значення Map назад у звичайний масив
     }
 
     function saveCart(cart) {
@@ -29,7 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const sumItemsElem = document.getElementById('js-sum-items');
     const sumTotalElem = document.getElementById('js-sum-total');
+    // Контейнер короткого списку товарів (збоку)
     const summaryContainer = document.getElementById('js-summary-items-container');
+    // Контейнер повного списку товарів (у модальному вікні)
     const modalListContainer = document.getElementById('js-modal-items-list');
 
     function updateTotals() {
@@ -45,8 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderCart() {
     const cart = getCart();
 
-    if (summaryContainer) {
-        summaryContainer.innerHTML = cart.map(item => `
+    if (summaryContainer) { // Якщо є контейнер короткого списку
+        // Формуємо HTML для кожного товару
+        summaryContainer.innerHTML = cart.map(item => ` 
         <div class="summary__item">
             <img src="img/nurofen.png" alt="${item.name}">
             <div>
@@ -108,9 +112,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // фіксація контактних даних
     // ==========================================
+    
+    // Кнопка "Зафіксувати" контакти
     const lockBtn = document.getElementById('js-lock-contact-btn');
+    // Кнопка "Змінити" контакти
     const unlockBtn = document.getElementById('js-unlock-contact-btn');
+    // Блок з полями форми
     const formInner = document.getElementById('js-contact-form-inner');
+    // Блок з відображенням збережених даних
     const savedInner = document.getElementById('js-contact-saved');
 
     if (lockBtn) {
@@ -165,8 +174,8 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('js-saved-phone').textContent = `+380 ${phone}`;
             document.getElementById('js-saved-email').textContent = document.getElementById('checkout-email').value.trim() || '';
 
-            document.getElementById('js-contact-form-inner').classList.add('hidden');
-            document.getElementById('js-contact-saved').classList.remove('hidden');
+            document.getElementById('js-contact-form-inner').classList.add('hidden');// Ховаємо форму
+            document.getElementById('js-contact-saved').classList.remove('hidden');// Показуємо збережені дані
         });
         }
 
@@ -180,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (unlockBtn) {
-    unlockBtn.addEventListener('click', () => {
+        unlockBtn.addEventListener('click', () => {
         savedInner.classList.add('hidden');
         formInner.classList.remove('hidden');
     });
@@ -193,33 +202,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const deliveryRadios = document.querySelectorAll('input[name="delivery"]');
 
     function updateDeliveryFields() {
-    const selected = document.querySelector('input[name="delivery"]:checked');
-    if (!selected || !deliveryFieldsBox) return;
+        const selected = document.querySelector('input[name="delivery"]:checked');
+        if (!selected || !deliveryFieldsBox) return;
 
-    const type = selected.dataset.type;
+        const type = selected.dataset.type;
 
-    if (type === 'pharmacy') {
-        deliveryFieldsBox.innerHTML = `
-        <label>Оберіть аптеку для самовивозу:</label>
-        <select>
-            <option>м. Київ, просп. Академіка Глушкова, 4г (В наявності)</option>
-            <option>м. Київ, вул. Хрещатик, 22 (В наявності)</option>
-            <option>м. Житомир, вул. Велика Бердичівська, 6 (В наявності)</option>
-        </select>
-        `;
-    } else if (type === 'post') {
-        deliveryFieldsBox.innerHTML = `
-        <label>Номер відділення або поштомату:</label>
-        <input type="text" placeholder="Введіть № відділення / поштомату..." required>
-        `;
-    } else if (type === 'courier') {
-        deliveryFieldsBox.innerHTML = `
-        <label>Адреса доставки кур'єром:</label>
-        <input type="text" placeholder="Вулиця, будинок, квартира" required style="margin-bottom:8px;">
-        `;
-    }
+        if (type === 'pharmacy') {
+            deliveryFieldsBox.innerHTML = `
+            <label>Оберіть аптеку для самовивозу:</label>
+            <select>
+                <option>м. Київ, просп. Академіка Глушкова, 4г (В наявності)</option>
+                <option>м. Київ, вул. Хрещатик, 22 (В наявності)</option>
+            </select>
+            `;
+        } else if (type === 'post') {
+            deliveryFieldsBox.innerHTML = `
+            <label>Номер відділення або поштомату:</label>
+            <input type="text" placeholder="Введіть № відділення / поштомату..." required>
+            `;
+        } else if (type === 'courier') {
+            deliveryFieldsBox.innerHTML = `
+            <label>Адреса доставки кур'єром:</label>
+            <input type="text" placeholder="Вулиця, будинок, квартира" required style="margin-bottom:8px;">
+            `;
+        }
 
-    updateTotals();
+        updateTotals();
     }
 
     deliveryRadios.forEach(r => r.addEventListener('change', updateDeliveryFields));
@@ -232,22 +240,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const paymentRadios = document.querySelectorAll('input[name="payment"]');
 
     paymentRadios.forEach(radio => {
-    radio.addEventListener('change', (e) => {
-        if (cardPayFields) {
-        cardPayFields.classList.toggle('hidden', e.target.value !== 'card');
-        }
+        radio.addEventListener('change', (e) => {
+            if (cardPayFields) {
+            cardPayFields.classList.toggle('hidden', e.target.value !== 'card');
+            }
+        });
     });
-    });
 
-
-
+    //кнопка поточного міста
     const selectedCityBtn = document.getElementById('js-selected-city');
-    document.querySelectorAll('.city-chip').forEach(btn => {
-    btn.addEventListener('click', () => {
-    const city = btn.dataset.city;
-    if (selectedCityBtn) selectedCityBtn.textContent = `${city} ▾`;
-    window.location.hash = '';
-    });
+    document.querySelectorAll('.city-chip').forEach(btn => { //модальне вікно
+        btn.addEventListener('click', () => {
+        const city = btn.dataset.city;
+        if (selectedCityBtn) selectedCityBtn.textContent = `${city} ▾`;
+        window.location.hash = '';
+        });
     });
 
     const cityInput = document.getElementById('city-input');
@@ -263,16 +270,16 @@ document.addEventListener('DOMContentLoaded', () => {
     cityInput.addEventListener('input', () => {
     const query = cityInput.value.trim().toLowerCase();
 
-    if (!query) {
-        cityResults.classList.remove('is-active');
+    if (!query) {  // Якщо поле порожнє
+        cityResults.classList.remove('is-active'); // Ховаємо список
         cityResults.innerHTML = '';
         return;
     }
-
+    // Фільтруємо міста за підрядком
     const matches = citiesList.filter(city => city.toLowerCase().includes(query));
 
-    if (matches.length > 0) {
-        cityResults.innerHTML = matches.map(city => 
+    if (matches.length > 0) { // Якщо є збіги
+        cityResults.innerHTML = matches.map(city =>  // Формуємо HTML для кожного
         `<div class="city-search-item" data-city="${city}">${city}</div>`
         ).join('');
     } else {

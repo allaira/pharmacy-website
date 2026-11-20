@@ -47,8 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let currentIndex = 0;
 
-  function updateGallery(index) {
-    currentIndex = (index + images.length) % images.length;
+  function updateGallery(index) { // Функція перемикання галереї на вказаний індекс
+    currentIndex = (index + images.length) % images.length; // цикл
 
     if (mainImg) {
       mainImg.src = images[currentIndex].src;
@@ -60,21 +60,24 @@ document.addEventListener('DOMContentLoaded', () => {
       const isActive = idx === currentIndex;
       img.classList.toggle('is-active', isActive);
       if (isActive) {
+        //активна мініатюра при прокрутці стає видимою
         img.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       }
     });
 
     const dots = dotsContainer?.querySelectorAll('i') || [];
     dots.forEach((dot, idx) => {
-      dot.classList.toggle('is-active', idx === currentIndex);
+      dot.classList.toggle('is-active', idx === currentIndex); // Активна точка = поточний індекс
     });
   }
 
   thumbTrack?.querySelectorAll('img').forEach((img, idx) => {
+    // Клік по мініатюрі - показати відповідне зображення
     img.addEventListener('click', () => updateGallery(idx));
   });
 
   dotsContainer?.querySelectorAll('i').forEach((dot, idx) => {
+    // Клік по точці - перемкнути галерею
     dot.addEventListener('click', () => updateGallery(idx));
   });
 
@@ -87,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.addEventListener('keydown', (e) => {
+    //фокус зараз у полі введення або в багаторядковому полі?
     if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
     if (e.key === 'ArrowLeft') updateGallery(currentIndex - 1);
     if (e.key === 'ArrowRight') updateGallery(currentIndex + 1);
@@ -104,12 +108,12 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 'reviews', el: document.getElementById('reviews') }
   ].filter(item => item.el);
 
-  function highlightSingleTabOnScroll() {
+  function highlightSingleTabOnScroll() { // Функція підсвічування активного пункту меню при скролі
     const scrollPos = window.scrollY + 140;
-    let currentId = 'all';
+    let currentId = 'all'; // За замовчуванням активна перша секція
 
     sections.forEach(item => {
-      if (scrollPos >= item.el.offsetTop) {
+      if (scrollPos >= item.el.offsetTop) { // Якщо ми вже доскролили до початку цієї секції
         currentId = item.id;
       }
     });
@@ -125,8 +129,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   subnavLinks.forEach(link => {
     link.addEventListener('click', function (e) {
-      e.preventDefault();
+      e.preventDefault(); // Скасовуємо стандартний стрибок по якорю
+      // Отримуємо id цільової секції
       const targetId = this.getAttribute('href').replace('#', '');
+      // Знаходимо елемент секції за id 
       const targetEl = sections.find(s => s.id === targetId)?.el;
 
       if (targetEl) {
@@ -144,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('input[name="qty"]').forEach(radio => {
     radio.addEventListener('change', (e) => {
       const priceText = e.target.value === '10' ? '174,50 ₴' : '349,00 ₴';
-      document.querySelectorAll('.buy-box__price, .subnav__mini strong, .floating-buy__price').forEach(el => {
+      document.querySelectorAll('.buy-box__price, .subnav__mini strong, .floating-buy__price').forEach(el => {  // Знаходимо всі місця, де показана ціна
         el.textContent = priceText;
       });
     });
@@ -156,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const favCheckbox = document.querySelector('.product-main__save input');
   if (favCheckbox) {
     let favs = JSON.parse(localStorage.getItem('pharmacy_favs') || '[]');
-    favCheckbox.checked = favs.includes(1);
+    favCheckbox.checked = favs.includes(1); // Ставимо галочку, якщо товар з id=1 уже в обраному
     favCheckbox.addEventListener('change', (e) => {
       let currentFavs = JSON.parse(localStorage.getItem('pharmacy_favs') || '[]');
       if (e.target.checked) {
@@ -171,14 +177,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.btn-buy, .subnav__cta').forEach(btn => {
     btn.addEventListener('click', (e) => {
-      e.preventDefault();
+      e.preventDefault(); //для анімації (плавний перехід до потрібного якоря)
       const selectedQty = document.querySelector('input[name="qty"]:checked')?.value || '20';
       const priceVal = selectedQty === '10' ? 174.50 : 349.00;
 
       const product = { id: 1, name: `Нурофєн експрес форте (${selectedQty} шт)`, price: priceVal, quantity: 1 };
       let cart = JSON.parse(localStorage.getItem('pharmacy_cart') || '[]');
-      const idx = cart.findIndex(i => i.id === product.id && i.name === product.name);
-      if (idx > -1) cart[idx].quantity += 1;
+      const idx = cart.findIndex(i => i.id === product.id && i.name === product.name);// Шукаємо такий самий товар (id + назва)
+      if (idx > -1) cart[idx].quantity += 1; // Якщо є — збільшуємо quantity
       else cart.push(product);
 
       localStorage.setItem('pharmacy_cart', JSON.stringify(cart));
@@ -203,11 +209,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (starsPicker && ratingInput) {
     const starSpans = starsPicker.querySelectorAll('span');
 
-    function setPickerValue(val) {
+    function setPickerValue(val) { //встановлення оцінки зірками
       ratingInput.value = val;
       starSpans.forEach(s => {
-        const spanVal = parseInt(s.dataset.val, 10);
-        s.classList.toggle('active', spanVal <= val);
+        const spanVal = parseInt(s.dataset.val, 10); //десяткова система числення
+        s.classList.toggle('active', spanVal <= val); //підсвічуємо до обраної включно
       });
     }
 
@@ -239,15 +245,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const topStarsElem = document.getElementById('js-top-stars');
 
   function getReviewPlural(n) {
-    const abs = Math.abs(n) % 100;
-    const n1 = abs % 10;
+    const abs = Math.abs(n) % 100; // Останні 2 цифри
+    const n1 = abs % 10; // Остання цифра
     if (abs > 10 && abs < 20) return `${n} відгуків`;
     if (n1 > 1 && n1 < 5) return `${n} відгуки`;
     if (n1 === 1) return `${n} відгук`;
     return `${n} відгуків`;
   }
 
-  function renderReviewsAndStats() {
+  function renderReviewsAndStats() { // Функція перемальовування відгуків і статистики
     if (!reviewsList) return;
     reviewsList.innerHTML = '';
 
@@ -255,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let avg = 0;
 
     if (count > 0) {
-      const sum = savedReviews.reduce((acc, r) => acc + (r.rating || 5), 0);
+      const sum = savedReviews.reduce((acc, r) => acc + (r.rating || 5), 0); // Сумуємо всі оцінки (якщо нема — 5)
       avg = (sum / count).toFixed(1);
     }
 
@@ -264,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (topCountElem) topCountElem.textContent = getReviewPlural(count);
 
     if (topStarsElem) {
-      topStarsElem.style.setProperty('--rating', avg);
+      topStarsElem.style.setProperty('--rating', avg); // Передаємо рейтинг
       topStarsElem.setAttribute('aria-label', `Рейтинг ${avg} з 5`);
     }
 
